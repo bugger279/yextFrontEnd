@@ -1,0 +1,28 @@
+{
+    "categories": [
+        {
+            "categoryID": "12",
+            "categoryName": "Restaurants"
+        },
+        {
+            "categoryID": "12",
+            "categoryName": "Mexican Restaurants"
+        },
+        {
+            "categoryID": "10",
+            "categoryName": "Chinese Restaurants"
+        },
+        {
+            "categoryID": "10",
+            "categoryName": "Uncle's Restaurants"
+        },
+        {
+            "categoryID": "21",
+            "categoryName": "Web Development"
+        },
+        {
+            "categoryID": "22",
+            "categoryName": "Web Designing"
+        }
+    ]
+}
