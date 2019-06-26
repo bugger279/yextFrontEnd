@@ -6,8 +6,18 @@
 .card-body { padding: 1rem; }
 .cat-and-location { margin-top: 45px; margin-bottom: 45px; }
 .cat-and-location h2 { margin-bottom: 20px; }
+.card-subtitle .phone { position: relative; padding-left: 25px; margin-top: 8px; display: inline-block; color: #777; font-weight: 600; }
+.card-subtitle .phone::before { content: "\f095"; left: 0; font-family: FontAwesome; position: absolute; font-size: 20px; color: #777; }
 #page_navigation { padding: 10px 0; border: 1px solid #ccc; border-left: 0; border-right: 0; border-bottom: 0; }
 #page_navigation > a { margin-left: 10px; }
+/* .card-title.location-name { margin-bottom: 0; } */
+/* Star Rating */
+.score { display: block; font-size: 16px; position: relative; overflow: hidden; }
+.score-wrap { display: inline-block; position: relative; height: 19px; }  
+.score .stars-active { color: #EEBD01; position: relative; z-index: 10; display: inline-block; overflow: hidden; white-space: nowrap; }  
+.score .stars-inactive { color: #ccc; position: absolute; top: 0; left: 0; -webkit-text-stroke: initial; }
+.score i { font-size: 25px; }
+.reviews-count { position: absolute; right: 20%; color: #777; }
 /* Single Location Name */
 .inner-top-banner { background: url(../images/stars.jpg) no-repeat; padding: 80px 0; background-size: cover; color: #fff; background-position: center; }
 a:hover { text-decoration: none; }

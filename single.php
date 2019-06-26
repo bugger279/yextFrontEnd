@@ -109,8 +109,27 @@ if(isset($_GET['id'])) {
                 $specialUrl = $locations_json["records"][0]["specialOffer"]["url"];
                 $twitterHandle = $locations_json["records"][0]["twitterHandle"];
                 $facebookHandle = $locations_json["records"][0]["facebookPageUrl"];
+                $ratings = ($locations_json["records"][0]["rating"]/5)*100;
                 ?>
                     <h2 class="location-name"><?php print_r($locationName); ?> <span class="attribution"><img src="<?php print_r($attributionImage); ?>" height="<?php print_r($attributionImageHeight); ?>" width="<?php print_r($attributionImageWidth); ?>" alt="<?php print_r($attributionImageDescription); ?>"></span><span class="closed">Closed: <?php print_r($closed); ?></span></h2>
+                    <span class="score">
+                    <div class="score-wrap">
+                        <span class="stars-active" style="width:<?php echo $ratings; ?>%">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        </span>
+                        <span class="stars-inactive">
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    </span>
                     <div class="description"><?php print_r($locationDescription); ?></div>
                     <div class="row">
                         <div class="goeData col-md-4">

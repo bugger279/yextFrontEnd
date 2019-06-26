@@ -83,6 +83,30 @@
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title location-name"><a href="single.php?id=<?php print_r($keys[$key]["partnerID"]); ?>"><?php print_r($keys[$key]["name"]); ?></a></h5>
+                              <?php
+                              $ratings = $keys[$key]["rating"];
+                              $ratings = ($ratings/5)*100;
+                              $reviewsCount = $keys[$key]["total_reviews"];
+                              ?>
+                              <span class="score">
+                                <div class="score-wrap">
+                                    <span class="stars-active" style="width:<?php echo $ratings; ?>%">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="stars-inactive">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                <span class="reviews-count">(<?php echo $reviewsCount; ?>)</span>
+                              </span>
                               <h6 class="card-subtitle mb-2 text-muted"><a class="phone" href="tel:<?php print_r($keys[$key]["phones"][0]["number"]["countryCode"]); ?><?php print_r($keys[$key]["phones"][0]["number"]["number"]); ?>"><?php print_r($keys[$key]["phones"][0]["number"]["number"]); ?></a></h6>
                               <p class="card-text location-address"><?php print_r($keys[$key]["address"]["displayAddress"]); ?></p>
                               <a href="single.php?id=<?php print_r($keys[$key]["partnerID"]); ?>" class="card-link"><button type="button" class="btn btn-primary">Read More</button></a>
