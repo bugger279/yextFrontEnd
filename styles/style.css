@@ -6,7 +6,10 @@
 .card-body { padding: 1rem; }
 .cat-and-location { margin-top: 45px; margin-bottom: 45px; }
 .cat-and-location h2 { margin-bottom: 20px; }
+#page_navigation { padding: 10px 0; border: 1px solid #ccc; border-left: 0; border-right: 0; border-bottom: 0; }
+#page_navigation > a { margin-left: 10px; }
 /* Single Location Name */
+.inner-top-banner { background: url(../images/stars.jpg) no-repeat; padding: 80px 0; background-size: cover; color: #fff; background-position: center; }
 a:hover { text-decoration: none; }
 .right-side > div { padding-bottom: 20px; border-bottom: 1px solid #ccc; margin-bottom: 15px; }
 .right-side > div:last-child { border: 0; margin: 0; padding: 0; }

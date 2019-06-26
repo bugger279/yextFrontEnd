@@ -44,13 +44,11 @@ if(isset($_GET['id'])) {
   </div>
 </div>
 <div class="main-content">
-  <div class="top-banner">
+  <div class="inner-top-banner">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-            <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
-            <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
-            <p>123 Local is the only place you need when trying to find the best local search results.  123 Local is always "Near Me".</p>
+            <h1><?php print_r($locations_json["records"][0]["name"]); ?></h1>
         </div>
       </div>
     </div>
@@ -397,7 +395,7 @@ if(isset($_GET['id'])) {
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>&copy; <?php echo(date('Y')-1); ?> -  <?php echo(date('Y')); ?> | Website By <a target="_blank" href="http://www.velocityconsultancy.com/">Velocity Consultancy</a></p>
+                <p>&copy; <?php echo(date('Y')-1); ?> -  <?php echo(date('Y')); ?>  | All Rights Reserved | <a href="https://www.gsmresults.com/" target="_blank">Web Design Tucson</a> by GSM Marketing Agency</p>
             </div>
         </div>
     </div>
