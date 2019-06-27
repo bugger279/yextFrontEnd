@@ -45,6 +45,14 @@ a:hover { text-decoration: none; }
 .cursor { cursor: pointer; }
 .prev, .next { cursor: pointer; position: absolute; top: 60%; width: auto; padding: 16px; margin-top: -50px; color: white; font-weight: bold; font-size: 20px; border-radius: 0 3px 3px 0; user-select: none; -webkit-user-select: none; }
 .next { right: 0; border-radius: 3px 0 0 3px; }
+/* Reviews */
+.jumbotron.review_wrapper { padding: 1rem; border-radius: 21px; }
+.reviewer span { display: inline-block; margin-right: 15px; }
+.review_comments { max-width: 1000px; width: 100%; padding: 1rem; border-radius: 21px; margin: 30px 0 20px auto; color: #fff; }
+.comments-wrapper { padding: 1rem; border-radius: 21px; margin-top: 1rem; }
+.main_review { padding: 1rem; max-width: 800px; margin-top: 1rem; border-radius: 21px; }
+.main_review h4 { font-weight: 600; text-transform: capitalize; border-bottom: 1px dashed; padding-bottom: 10px; }
+.main_review p { margin-bottom: 5px; }
 /* Left Side */
 .left-side h3 { background: #007bff; color: #fff; padding: 10px; }
 .left-side > div > div { padding: 0 10px 0 10px; }

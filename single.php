@@ -12,12 +12,25 @@ if(isset($_GET['id'])) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'key: ieurtjkosakwehua1457821244amsnashjad'
+        'key: ieurtjkosakwehua1457821244amsnashjad'
     ));
     curl_setopt($ch, CURLOPT_URL, $readAll);
     $locations = curl_exec($ch);
     $locations_json = json_decode($locations, true);
     curl_close($ch);
+?>
+
+<?php
+    $reviews_call = "http://123local.com/powerlistings/reviews/reviews.php?id=$id";
+    $ch_reviews = curl_init();
+    curl_setopt($ch_reviews, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch_reviews, CURLOPT_HTTPHEADER, array(
+        'key: ieurtjkosakwehua1457821244amsnashjad'
+    ));
+    curl_setopt($ch_reviews, CURLOPT_URL, $reviews_call);
+    $reviews = curl_exec($ch_reviews);
+    $reviews_json = json_decode($reviews, true);
+    curl_close($ch_reviews);
 ?>
 
 <!DOCTYPE html>
@@ -408,6 +421,62 @@ if(isset($_GET['id'])) {
         </div>
       </div>
     </div>
+  </div>
+  <div class="reviews-wrapper">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                <h3>Reviews&nbsp;<span class="reviews_count">(<?php print_r($reviews_json["records"][0]["total"]); ?>)</span></h3>
+                <?php
+                    $reviews = $reviews_json["records"][0]["reviews"];
+                    foreach ($reviews as $reviews) { ?>
+                    <div class="jumbotron review_wrapper bg-light">
+                        <h4 class="reviewer"><span><img class="review_user_thumbnail" src="images/users_icon.jpg" alt="users_icon"></span><?php print_r($reviews["authorName"]); ?></h4>
+                        <div class="bg-secondary text-white main_review">
+                            <h4 class="review_lead"><?php print_r($reviews["title"]); ?></h4>
+                            <?php
+                                $ratings = $reviews["rating"];
+                                $ratings = ($ratings/5)*100;
+                            ?>
+                            <span class="score">
+                                <div class="score-wrap">
+                                    <span class="stars-active" style="width:<?php echo $ratings; ?>%">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="stars-inactive">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </span>
+                            <p class="review-txt"><?php print_r($reviews["content"]); ?></p>
+                            <span class="review-timestamp timestamp"><?php print_r($reviews["timestamp"]); ?></span>
+                        </div>
+                            <div class="review_comments bg-secondary">
+                                <h5>Comments:</h5>
+                        <?php
+                            foreach ($reviews["comments"] as $comment) { ?>
+                                <div class="comments-wrapper bg-dark">
+                                    <div class="comment-author"><h5><?php print_r($comment["authorName"]); ?></h5></div>
+                                    <div class="comment-content"><p><?php print_r($comment["content"]); ?></p></div>
+                                    <div class="comment-timestamp timestamp"><p><?php print_r($comment["timestamp"]); ?></p></div>
+                                </div>
+                            <?php }
+                        ?>
+                            </div>
+                        </div>
+                    <?php }
+                ?>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
 <div class="footer bg-dark text-center">
