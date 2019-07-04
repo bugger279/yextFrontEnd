@@ -1,0 +1,9 @@
+.top-header { padding: 20px 0; border-bottom: 1px solid #ceead5; }
+.user_card { width: 350px; margin-top: auto; margin-bottom: auto; background: #f39c12; position: relative; display: flex; justify-content: center; flex-direction: column; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 5px; padding-bottom: 25px; padding-top: 25px; margin-bottom: 50px; }
+.login_btn { width: 100%; background: #c0392b; color: white !important; }
+.login_btn:focus { box-shadow: none; outline: 0px; }
+.input-group-text { width: 40px; background: #c0392b; color: white; border: 0; border-radius: 0.25rem 0 0 0.25rem !important; }
+.input_user, .input_pass:focus { box-shadow: none; outline: 0px; }
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before { background-color: #c0392b; }
+.form-container { margin-top: 60px; margin-bottom: 50px; }
+.form-container .card-title { font-weight: 600; margin: 0 0 20px 0; }
