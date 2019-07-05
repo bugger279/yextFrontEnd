@@ -8,7 +8,7 @@ if(isset($_GET['category'])) {
 ?>
 
 <?php
-    $readAll = 'http://localhost/123local-API/product/categoryDetails.php?category="' . $category_name . '"';
+    $readAll = 'http://123local.com/powerlistings/product/categoryDetails.php?category="' . $category_name . '"';
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
