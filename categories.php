@@ -1,14 +1,14 @@
 <?php
 global $category_name;
-if(isset($_GET['cat_name'])) {
-    $category_name = $_GET['cat_name'];
+if(isset($_GET['category'])) {
+    $category_name = $_GET['category'];
 } else {
     Header('Location: index.php');
 }
 ?>
 
 <?php
-    $readAll = 'http://123local.com/powerlistings/product/categoryDetails.php?cat_name="' . $category_name . '"';
+    $readAll = 'http://localhost/123local-API/product/categoryDetails.php?category="' . $category_name . '"';
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -16,7 +16,6 @@ if(isset($_GET['cat_name'])) {
     ));
     curl_setopt($ch, CURLOPT_URL, $readAll);
     $locations = curl_exec($ch);
-    var_dump($locations);
     $locations_json = json_decode($locations, true);
     curl_close($ch);
 ?>
@@ -59,14 +58,38 @@ if(isset($_GET['cat_name'])) {
   <div class="cat-and-location">
     <div class="container">
       <div class="row">
-          <div class="col-md-12">
-              <h2>Listings</h2>
+      <div class="col-md-3">
+            <h2>Categories</h2>
+            <?php
+                $readAllCategories = "http://123local.com/powerlistings/product/category.php";
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'key: ieurtjkosakwehua1457821244amsnashjad'
+                ));
+                curl_setopt($ch, CURLOPT_URL, $readAllCategories);
+                $categories = curl_exec($ch);
+                $categories_json = json_decode($categories, true);
+                curl_close($ch);
+            ?>
+            <div class="categories-sidebar">
+                <ul class="list-group">
+                  <?php foreach ($categories_json as $keys) {
+                    foreach ($keys as $key) { ?>
+                      <li class="list-group-item"><a href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><?php print_r($key["categoryName"]); ?></a></li>
+                    <?php }
+                   } ?>
+                </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+              <h2 style="text-transform: capitalize;"><?php echo $category_name; ?></h2>
               <div class="locations">
                 <div class="row">
                 <?php
                 foreach($locations_json as $keys) {
                   foreach ($keys as $key => $value) { ?>
-                    <div class="location-wrappper col-md-3">
+                    <div class="location-wrappper col-md-4">
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title location-name"><a href="single.php?id=<?php print_r($keys[$key]["partnerID"]); ?>"><?php print_r($keys[$key]["name"]); ?></a></h5>

@@ -54,7 +54,7 @@
                 <ul class="list-group">
                   <?php foreach ($categories_json as $keys) {
                     foreach ($keys as $key) { ?>
-                      <li class="list-group-item"><a href="categories.php?cat_name=<?php print_r($key["categoryName"]); ?>"><?php print_r($key["categoryName"]); ?></a></li>
+                      <li class="list-group-item"><a href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><?php print_r($key["categoryName"]); ?></a></li>
                     <?php }
                    } ?>
                 </ul>
