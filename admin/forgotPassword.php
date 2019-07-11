@@ -1,18 +1,16 @@
 <?php
     session_start();
-    ob_start();
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "api_db";
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-    catch(PDOException $e)
-        {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
-        }
+    }
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>POWERLISTING | ADMIN LOGIN</title>
+    <title>POWERLISTING | FORGOT PASSWORD</title>
     <script src="js/jquery.min.js"></script>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/fontawesome/css/font-awesome.min.css">
@@ -44,57 +42,55 @@
                     <div class="h-100">
                         <div class="d-flex justify-content-center h-100">
                             <div class="user_card">
-                                <div class="d-flex justify-content-center"><h3 class="card-title">Login</h3></div>
+                                <div class="d-flex justify-content-center"><h3 class="card-title">Forgot Password</h3></div>
                                 <div class="d-flex justify-content-center form_container">
-                                    <form action="login.php" name="loginForm" method="POST">
+                                    <form action="" name="loginForm" method="POST">
                                         <div class="input-group mb-3">
                                             <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                                <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                             </div>
-                                            <input type="text" name="login_name" class="form-control input_user" value="" placeholder="username" required="true">
-                                        </div>
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                            </div>
-                                            <input type="password" name="login_pwd" class="form-control input_pass" value="" placeholder="password"  required="true">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                                <label class="custom-control-label" for="customControlInline">Remember me</label>
-                                            </div>
+                                            <input type="email" name="login_email" class="form-control input_user" value="" placeholder="Email Address" required="true">
                                         </div>
                                         <div class="d-flex justify-content-center mt-3 login_container">
-                                            <button type="submit" name="login_btn" class="btn login_btn">Login</button>
-                                        </div>
-                                        <div class="d-flex justify-content-center mt-3 login_container">
-                                            <p class="pwdReset" ><a href="forgotPassword.php">Forgot Password?</a></p>
+                                            <button type="submit" name="reset_btn" class="btn login_btn">Send Reset Link</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                                 <?php
                                 // username = user_admin pwd = gsmadmin@123;
-                                if (isset($_POST['login_btn'])) {
-                                    $username = $_POST['login_name'];
-                                    $password = $_POST['login_pwd'];
-                                    $encryptedPassword = md5($password);
+                                if (isset($_POST['reset_btn'])) {
+                                    $emailAddress = $_POST['login_email'];
 
-                                    $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$encryptedPassword' ";
+                                    $sql = "SELECT * FROM admin WHERE emailAddress = '$emailAddress' ";
                                     $stmt = $conn->prepare($sql);
                                     $stmt->execute();
                                     $count = $stmt->rowCount();
 
                                     if ($count > 0) {
-                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        extract($row);
-                                        $_SESSION["username"] = $nickname;
-                                        if (isset($_SESSION["username"])) {
-                                            header("Location: index.php");
-                                        } else {
-                                              header("Location: login.php");
-                                        }
+                                            $token = bin2hex(random_bytes(50));
+                                            $resetSql = "INSERT INTO admin (emailAddress, token) VALUES ('$emailAddress', '$token')";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            $to = $emailAddress;
+
+                                            $subject = "Reset your password on 123local.com Website";
+                                            $msg = "Hi there, click on this <a href=\"http://localhost/yextFrontEnd/admin/resetPassword.php?token=" . $token . "\">link</a> to reset your password on our site";
+                                            print_r($msg);
+                                            $headers = "From: info@123local.com";
+                                            mail($to, $subject, $msg, $headers);
+                                        ?>
+                                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="toast-header">
+                                            <strong class="mr-auto text-info">Message</strong>
+                                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                        <div class="toast-body">
+                                            Reset Link has been sent to you email address.
+                                        </div>
+                                        </div>
+
+                                    <?php
                                     } else { ?>
                                         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                                         <div class="toast-header">
@@ -104,7 +100,7 @@
                                             </button>
                                         </div>
                                         <div class="toast-body">
-                                            Invalid Credentials.
+                                            Email Address:<br><strong><?php echo $emailAddress; ?></strong><br>doesn't exists.
                                         </div>
                                         </div>
                                     <?php }

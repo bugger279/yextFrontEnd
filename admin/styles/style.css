@@ -1,4 +1,6 @@
+a { text-decoration: none !important; }
 .top-header { padding: 20px 0; border-bottom: 1px solid #ceead5; }
+/* Login Page */
 .user_card { width: 350px; margin-top: auto; margin-bottom: auto; background: #f39c12; position: relative; display: flex; justify-content: center; flex-direction: column; padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 5px; padding-bottom: 25px; padding-top: 25px; margin-bottom: 50px; }
 .login_btn { width: 100%; background: #c0392b; color: white !important; }
 .login_btn:focus { box-shadow: none; outline: 0px; }
@@ -7,3 +9,17 @@
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before { background-color: #c0392b; }
 .form-container { margin-top: 60px; margin-bottom: 50px; }
 .form-container .card-title { font-weight: 600; margin: 0 0 20px 0; }
+/* Dashborad Page */
+.toast { position: absolute; right: 0; top: 0; opacity: 1; }
+.welcome-section { margin: 45px 0; }
+.admin_nick { text-transform: capitalize; }
+.action-btns a { font-size: 20px; display: inline-block; margin-right: 5px; }
+.logOut { font-size: 18px; display: inline-block; margin-left: 10px; }
+.listing-rows { margin-bottom: 45px; }
+/* Password Reset Page */
+.pwdReset { margin: 0; }
+.pwdReset a { color: #000; }
+/* Footer */
+.footer { padding: 10px 0; }
+.footer p { margin: 0; }
+.footer p, .footer a { color: #ccc; font-size: 14px; }

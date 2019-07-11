@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    ob_start();
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "api_db";
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected successfully";
         }
     catch(PDOException $e)
         {
@@ -68,62 +68,53 @@
                                         <div class="d-flex justify-content-center mt-3 login_container">
                                             <button type="submit" name="login_btn" class="btn login_btn">Login</button>
                                         </div>
-                                        <div class="d-flex justify-content-center mt-3 login_container">
-                                            <p class="pwdReset" ><a href="forgotPassword.php">Forgot Password?</a></p>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
-                                <?php
-                                // username = user_admin pwd = gsmadmin@123;
-                                if (isset($_POST['login_btn'])) {
-                                    $username = $_POST['login_name'];
-                                    $password = $_POST['login_pwd'];
-                                    $encryptedPassword = md5($password);
-
-                                    $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$encryptedPassword' ";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->execute();
-                                    $count = $stmt->rowCount();
-
-                                    if ($count > 0) {
-                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        extract($row);
-                                        $_SESSION["username"] = $nickname;
-                                        if (isset($_SESSION["username"])) {
-                                            header("Location: index.php");
-                                        } else {
-                                              header("Location: login.php");
-                                        }
-                                    } else { ?>
-                                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                        <div class="toast-header">
-                                            <strong class="mr-auto text-danger">Error</strong>
-                                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                            <!-- <span id="closeToast" aria-hidden="true">&times;</span> -->
-                                            </button>
-                                        </div>
-                                        <div class="toast-body">
-                                            Invalid Credentials.
-                                        </div>
-                                        </div>
-                                    <?php }
-                                }
-                                ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="footer bg-dark text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>&copy; <?php echo(date('Y')-1); ?> -  <?php echo(date('Y')); ?>  | All Rights Reserved | <a href="https://www.gsmresults.com/" target="_blank">Web Design Tucson</a> by GSM Marketing Agency</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
+
+<?php
+// username = user_admin pwd = gsmadmin@123;
+if (isset($_POST['login_btn'])) {
+    $username = $_POST['login_name'];
+    $password = $_POST['login_pwd'];
+    $encryptedPassword = md5($password);
+    print_r($encryptedPassword);
+
+    // $cipher_method = 'aes-128-ctr';
+    // $enc_key = openssl_digest(php_uname(), 'SHA256', TRUE);
+    // $enc_iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher_method));
+    // $crypted_password = openssl_encrypt($password, $cipher_method, $enc_key, 0, $enc_iv) . "::" . bin2hex($enc_iv);
+    // unset($password, $cipher_method, $enc_key, $enc_iv);
+
+
+    // list($crypted_password, $enc_iv) = explode("::", $crypted_password);;
+    // $cipher_method = 'aes-128-ctr';
+    // $enc_key = openssl_digest(php_uname(), 'SHA256', TRUE);
+    // $password = openssl_decrypt($crypted_password, $cipher_method, $enc_key, 0, hex2bin($enc_iv));
+    // unset($crypted_password, $cipher_method, $enc_key, $enc_iv);
+    
+
+    // $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password' ";
+    // var_dump($sql);
+    // $stmt = $conn->prepare($sql);
+    // $stmt->execute();
+    // $count = $stmt->rowCount();
+    // print_r($count);
+
+    // $result = $conn->query($sql);
+    // if ($result->num_rows > 0) {
+    //     echo "1";
+    // } else {
+    //     echo "oopps!";
+    // }
+}
+
+?>
