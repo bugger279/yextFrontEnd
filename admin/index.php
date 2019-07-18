@@ -3,6 +3,8 @@
     if (!isset($_SESSION["username"])) {
         header("Location: login.php");
     }
+
+include "include/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>POWERLISTING | ADMIN LOGIN</title>
-    <script src="js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/fontawesome/css/font-awesome.min.css">
     <script src="../js/bootstrap.min.js"></script>
@@ -37,7 +39,7 @@
         </div>
     </div>
     <?php
-        $readAll = "http://123local.com/powerlistings/product/read.php";
+/*        $readAll = "http://123local.com/powerlistings/product/read.php";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -46,7 +48,32 @@
         curl_setopt($ch, CURLOPT_URL, $readAll);
         $locations = curl_exec($ch);
         $locations_json = json_decode($locations, true);
-        curl_close($ch);
+        curl_close($ch);*/
+	
+	
+	
+		if(isset($_GET['id']))
+		{
+			$messageCode = $_GET['id'];
+			
+			echo "<div class='message-rows'><div class='container'><div class='row'><div class='col-md-12'>";
+			
+			if($messageCode == "success")
+			{
+				echo "<h3 class='text-success message text-center'>Listing Deleted</h3>";
+			}
+			
+			else
+			{
+				echo "<h3 class='text-danger message text-center'>Please try again later</h3>";
+				
+			}
+			
+			echo "</div></div></div></div>";
+			
+			
+		}
+	
     ?>
     <div class="listing-rows">
         <div class="container">
@@ -63,19 +90,31 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach($locations_json as $keys) {
-                                foreach ($keys as $key => $value) { ?>
+							$sql = "SELECT locationId, name, status FROM locations ";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute();
+							
+							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        						extract($row);
+
+							?>
                                 <tr>
-                                <th scope="row"><?php print_r($keys[$key]["partnerID"]); ?></th>
-                                <td><?php print_r($keys[$key]["name"]); ?></td>
-                                <td><?php print_r($keys[$key]["status"]); ?></td>
+                                <th scope="row"><?php echo $locationId; ?></th>
+                                <td><?php echo $name; ?></td>
+									<td><select class="dropdown" onChange="changeStatus(this);">
+										<option value="LIVE" <?php if($status == 'LIVE'){echo 'selected';} ?>>LIVE</option>
+										<option value="AVAILABLE" <?php if($status == 'AVAILABLE'){echo 'selected';} ?>>AVAILABLE</option>
+										<option value="ACTIVE" <?php if($status == 'ACTIVE'){echo 'selected';} ?>>ACTIVE</option>
+										<option value="CLAIMED" <?php if($status == 'CLAIMED'){echo 'selected';} ?>>CLAIMED</option>
+										<option value="SUPPRESSED" <?php if($status == 'SUPPRESSED'){echo 'selected';} ?>>SUPPRESSED</option>
+										<option value="BLOCKED" <?php if($status == 'BLOCKED'){echo 'selected';} ?>>BLOCKED</option>
+										</select><input type="hidden" value="<?php echo $locationId; ?>" class="listingid"></td>
                                 <td class="action-btns">
-                                    <a href="#"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-                                    <a href="delete.php?id=<?php print_r($keys[$key]["partnerID"]); ?>"  onclick="confirmDelete()" ><i class="fa fa-window-close" aria-hidden="true"></i></a>
+                                    <a href="delete.php?id=<?php echo $locationId; ?>"  onclick="return confirmDelete()" ><i class="fa fa-window-close" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
-                            <?php }
-                        } ?>
+
+                      <?php  } ?>
                         </tbody>
                         </table>
                 </div>
@@ -95,11 +134,42 @@
         function confirmDelete() {
             var r = confirm("Are you sure you want to delete this listing?");
             if (r == true) {
-                txt = "You pressed OK!";
+                return true;
             } else {
-                txt = "You pressed Cancel!";
+                return false;
             }
         }
     </script>
+	<script>
+		function changeStatus(stat)
+		{
+			var status = stat.value;
+			var id = $(stat).next('input').val();
+			//alert(status);
+			
+			
+		
+			
+			$.ajax({
+				type: "POST",
+				dataType: "text",
+				url: "edit-status.php",
+				data: {"status": status, "id": id},
+				success: function(response)
+				{
+				
+					if(response){
+					alert("Status Changed");
+					}
+					else{
+						alert("Error");
+					}
+				
+
+				}
+			});
+			
+		}
+	</script>
 </body>
 </html>

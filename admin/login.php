@@ -1,18 +1,7 @@
 <?php
     session_start();
     ob_start();
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "api_db";
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-    catch(PDOException $e)
-        {
-        echo "Connection failed: " . $e->getMessage();
-        }
+   include "include/config.php"; 
 ?> 
 <!DOCTYPE html>
 <html lang="en">

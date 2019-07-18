@@ -1,16 +1,6 @@
 <?php
     session_start();
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "api_db";
-    try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+include "include/config.php";
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +39,7 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
                                             </div>
-                                            <input type="text" name="new_password" class="form-control input_user" value="" placeholder="Type your new password" required="true">
+                                            <input type="password" name="new_password" class="form-control input_user" value="" placeholder="Type your new password" required="true">
                                         </div>
                                         <div class="d-flex justify-content-center mt-3 login_container">
                                             <button type="submit" name="reset_btn" class="btn login_btn">Reset Password</button>

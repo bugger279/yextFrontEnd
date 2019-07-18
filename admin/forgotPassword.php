@@ -1,16 +1,6 @@
 <?php
     session_start();
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "api_db";
-    try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+include "include/config.php";
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,19 +56,26 @@
                                     $stmt = $conn->prepare($sql);
                                     $stmt->execute();
                                     $count = $stmt->rowCount();
+									
 
                                     if ($count > 0) {
-                                            $token = bin2hex(random_bytes(50));
-                                            $resetSql = "INSERT INTO admin (emailAddress, token) VALUES ('$emailAddress', '$token')";
-                                            $stmt = $conn->prepare($sql);
+										
+													$str=rand(); 
+												 $token = md5($str); 
+										
+                                            $resetSql = "UPDATE admin SET token='$token' WHERE emailAddress = '$emailAddress'";
+                                            $stmt = $conn->prepare($resetSql);
                                             $stmt->execute();
                                             $to = $emailAddress;
 
                                             $subject = "Reset your password on 123local.com Website";
-                                            $msg = "Hi there, click on this <a href=\"http://localhost/yextFrontEnd/admin/resetPassword.php?token=" . $token . "\">link</a> to reset your password on our site";
-                                            print_r($msg);
-                                            $headers = "From: info@123local.com";
-                                            mail($to, $subject, $msg, $headers);
+                                            $msg = "Hi there, click on this <a href=\"http://www.123local.com/admin/resetPassword.php?token=" . $token . "\">link</a> to reset your password on our site";
+                                            //print_r($msg);
+											$headers = "MIME-Version: 1.0" . "\r\n";
+											$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                                            $headers .= "From: info@123local.com";
+										
+                                            mail($to, $subject, $msg, $headers)
                                         ?>
                                         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                                         <div class="toast-header">
