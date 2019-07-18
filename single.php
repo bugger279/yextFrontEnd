@@ -113,7 +113,17 @@ if(isset($_GET['id'])) {
                 $attributionImageHeight = $locations_json["records"][0]["attribution"]["image"]["height"];
                 $attributionImageWidth = $locations_json["records"][0]["attribution"]["image"]["width"];
                 $attributionImageDescription = $locations_json["records"][0]["attribution"]["image"]["description"];
+                $images = $locations_json["records"][0]["images"];
+                    foreach ($images as $image) {
+                        $logoType = $image["type"];
+                        if ($logoType === "LOGO") {
+                            $logo = $image["url"];
+                        }
+                    }
                 $closed = $locations_json["records"][0]["closed"];
+                if (empty($closed)) {
+                    $closed = "Not Set";
+                }
                 $locationDescription = $locations_json["records"][0]["description"];
                 $yearEstablished = $locations_json["records"][0]["yearEstablished"];
                 $latitude = $locations_json["records"][0]["geoData"]["displayLatitude"];
@@ -124,7 +134,11 @@ if(isset($_GET['id'])) {
                 $facebookHandle = $locations_json["records"][0]["facebookPageUrl"];
                 $ratings = ($locations_json["records"][0]["rating"]/5)*100;
                 ?>
-                    <h2 class="location-name"><?php print_r($locationName); ?> <span class="attribution"><img src="<?php print_r($attributionImage); ?>" height="<?php print_r($attributionImageHeight); ?>" width="<?php print_r($attributionImageWidth); ?>" alt="<?php print_r($attributionImageDescription); ?>"></span><span class="closed">Closed: <?php print_r($closed); ?></span></h2>
+                    <h2 class="location-name">
+                    <?php if (!empty($logo)) { ?>
+                        <span class="main-logo"><img class="img-responsive" src="<?php print_r($logo); ?>" alt="<?php print_r($locationName); ?>"></span>
+                    <?php } ?>    
+                    <?php print_r($locationName); ?> <span class="attribution"><img src="<?php print_r($attributionImage); ?>" height="<?php print_r($attributionImageHeight); ?>" width="<?php print_r($attributionImageWidth); ?>" alt="<?php print_r($attributionImageDescription); ?>"></span><span class="closed">Closed: <?php print_r($closed); ?></span></h2>
                     <span class="score">
                     <div class="score-wrap">
                         <span class="stars-active" style="width:<?php echo $ratings; ?>%">
@@ -156,7 +170,7 @@ if(isset($_GET['id'])) {
                             <div class="card card-body bg-secondary text-white">
                                 <h3>Special Offer</h3>
                                 <div class="message">Special Offer: <?php print_r($specialMessage);?></div>
-                                <div class="url"><a class="btn btn-dark" href="<?php print_r($specialUrl);?>">View Offer</a></div>
+                                <div class="url"><a target="_blank" class="btn btn-dark" href="<?php print_r($specialUrl);?>">View Offer</a></div>
                             </div>
                         </div>
                         <div class="social-links col-md-4">
@@ -171,6 +185,68 @@ if(isset($_GET['id'])) {
                         <p>Year Established: <?php print_r($yearEstablished); ?></p>
                     </div>
                 </div>
+            </div>
+            <div class="location-address">
+                <h3>Address</h3>
+                <?php
+                    $locationAddress = $locations_json["records"][0]["address"];
+                ?>
+                    <div class="addresses">
+                        <div class="addressMain">
+                            <?php print_r($locationAddress["address"]); ?>,
+                            <?php
+                                if (empty($locationAddress["address2"])) {
+                                    $locationAddress["address2"] = "";
+                                    print_r($locationAddress["address2"]);
+                                } else {
+                                    print_r($locationAddress["address2"]);  
+                                }
+                                
+                            ?>,
+                            <?php
+                                if (empty($locationAddress["city"])) {
+                                    $locationAddress["city"] = "";
+                                    print_r($locationAddress["city"]);
+                                } else {
+                                    print_r($locationAddress["city"]);  
+                                }
+                                
+                            ?>,
+                            <?php
+                                if (empty($locationAddress["displayAddress"])) {
+                                    $locationAddress["displayAddress"] = "";
+                                    print_r($locationAddress["displayAddress"]);
+                                } else {
+                                    print_r($locationAddress["displayAddress"]);  
+                                }
+                                
+                            ?>,
+                            <?php
+                                if (empty($locationAddress["countryCode"])) {
+                                    $locationAddress["countryCode"] = "";
+                                    print_r($locationAddress["countryCode"]);
+                                } else {
+                                    print_r($locationAddress["countryCode"]);
+                                }
+                            ?>,
+                            <?php
+                                if (empty($locationAddress["postalCode"])) {
+                                    $locationAddress["postalCode"] = "";
+                                    print_r($locationAddress["postalCode"]);
+                                } else {
+                                    print_r($locationAddress["postalCode"]);
+                                }
+                            ?>,
+                            <?php
+                                if (empty($locationAddress["state"])) {
+                                    $locationAddress["state"] = "";
+                                    print_r($locationAddress["state"]);
+                                } else {
+                                    print_r($locationAddress["state"]);
+                                }
+                            ?>
+                        </div>
+                    </div>
             </div>
             <div class="location-phones">
                 <h3>Phones</h3>
@@ -204,7 +280,14 @@ if(isset($_GET['id'])) {
                             <tr>
                                 <td class="day"><?php print_r($hour["day"]); ?></td>
                                 <?php
-                                    foreach ($hour["intervals"] as $day) { ?>
+                                    foreach ($hour["intervals"] as $day) {
+                                        if (empty($day["starts"])) {
+                                            $day["starts"] = "00:00:00";
+                                        }
+                                        if (empty($day["ends"])) {
+                                            $day["ends"] = "00:00:00";
+                                        }
+                                        ?>
                                             <td>
                                                 <div class="start"><span>Starts:</span> <?php print_r($day["starts"]); ?></div>
                                                 <div class="ends"><span>Ends:</span> <?php print_r($day["ends"]); ?></div>
@@ -216,6 +299,15 @@ if(isset($_GET['id'])) {
                         </tr>
                     </tbody>
                 </table>
+                <div class="additional-hours">
+                    <?php
+                        $additionalHours = $locations_json["records"][0]["hoursText"];
+                        if (empty($additionalHours["display"])) {
+                            $additionalHours["display"] = "Not Set";
+                        }
+                    ?>
+                    <p><strong>Additional Hours:</strong> <?php print_r($additionalHours["display"]); ?></p>
+                </div>
             </div>
             <div class="location-images">
                 <h3>Gallery</h3>
@@ -229,8 +321,10 @@ if(isset($_GET['id'])) {
                         $imageUrl = $image["url"]; ?>
                         <div class="mySlides">
                             <img class="img-responsive" src="<?php print_r($imageUrl)?>" style="width:100%">
+                            <span class="img-caption"><?php print_r($imageType)?></span>
                         </div>
-                        <?php }
+                        <?php
+                        }
                         ?>
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -258,14 +352,29 @@ if(isset($_GET['id'])) {
             </div>
             <div class="location-urls">
                 <h3>Urls</h3>
-                <?php
-                $urls = $locations_json["records"][0]["urls"];
-                foreach ($urls as $url) { ?>
-                <div class="url card card-body bg-light">
-                    <div class="displayUrl"><?php print_r($url["displayUrl"]); ?></div>
-                    <div class="displayUrlType"><?php print_r($url["description"]); ?></div>
+                <div class="row">
+                    <?php
+                    $urls = $locations_json["records"][0]["urls"];
+                    foreach ($urls as $url) {
+                        if (empty($url["url"])) {
+                            $url["url"] = "";
+                        }
+                        if (empty($url["displayUrl"])) {
+                            $url["displayUrl"] = "Not Set";
+                        }
+                        if (empty($url["type"])) {
+                            $url["type"] = "Not Set";
+                        }
+                    ?>
+                    <div class="col-md-4">
+                        <div class="url card card-body bg-secondary text-white">
+                            <div class="mainUrl"><p><a class="btn btn-dark" href="<?php print_r($url["url"]); ?>" target="_blank" rel="noopener noreferrer">View Website</a></p></div>
+                            <div class="displayUrl">Display Url: <a href="<?php print_r($url["displayUrl"]); ?>" target="_blank" rel="noopener noreferrer"><?php print_r($url["displayUrl"]); ?></a> </div>
+                            <div class="displayUrlType">Type: <?php print_r($url["type"]); ?></div>
+                        </div>
+                    </div>
+                    <?php  } ?>
                 </div>
-                <?php  } ?>
             </div>
             <div class="location-lists">
                 <h3>Lists</h3>
@@ -279,6 +388,10 @@ if(isset($_GET['id'])) {
                     </div>
                 <?php }
                 ?>
+            </div>
+            <div class="payment-options">
+                <h3>Payment Options</h3>
+                <p>Not Yet Set.</p>
             </div>
             <div class="location-specific">
                 <h3>Other Details</h3>
