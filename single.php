@@ -17,6 +17,7 @@ if(isset($_GET['id'])) {
     curl_setopt($ch, CURLOPT_URL, $readAll);
     $locations = curl_exec($ch);
     $locations_json = json_decode($locations, true);
+    // print_r($locations_json);
     curl_close($ch);
 ?>
 
@@ -389,10 +390,6 @@ if(isset($_GET['id'])) {
                 <?php }
                 ?>
             </div>
-            <div class="payment-options">
-                <h3>Payment Options</h3>
-                <p>Not Yet Set.</p>
-            </div>
             <div class="location-specific">
                 <h3>Other Details</h3>
                 <div class="specific-buttons">
@@ -401,6 +398,7 @@ if(isset($_GET['id'])) {
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewProducts">View Products</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewAssociations">View Accociations</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewLanguages">View Languages</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPayments">Payment Options</button>
                 </div>
                 <!-- All Modals -->
                 <!-- Specialities -->
@@ -518,6 +516,31 @@ if(isset($_GET['id'])) {
                                     $languages = $locations_json["records"][0]["languages"];
                                     foreach ($languages as $language) { ?>
                                         <li class="list-group-item"><i class="fa fa-language" aria-hidden="true"></i> &nbsp;<?php print_r($language); ?></li>
+                                    <?php }
+                                ?>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Payments -->
+                <div class="modal fade" id="viewPayments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Specialities</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group list-group-flush">
+                                <?php
+                                    $paymentOptions = $locations_json["records"][0]["paymentOptions"];
+                                    foreach ($paymentOptions as $paymentOption) { ?>
+                                        <li class="list-group-item"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> &nbsp;<?php print_r($paymentOption); ?></li>
                                     <?php }
                                 ?>
                                 </ul>

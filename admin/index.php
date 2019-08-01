@@ -111,6 +111,7 @@ include "include/config.php";
 										</select><input type="hidden" value="<?php echo $locationId; ?>" class="listingid"></td>
                                 <td class="action-btns">
                                     <a href="delete.php?id=<?php echo $locationId; ?>"  onclick="return confirmDelete()" ><i class="fa fa-window-close" aria-hidden="true"></i></a>
+									<a href="edit.php?id=<?php echo $locationId; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
 

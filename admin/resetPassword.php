@@ -30,7 +30,7 @@ include "include/config.php";
             <div class="row">
                 <div class="col-md-12">
                     <div class="h-100">
-                        <div class="justify-content-center h-100">
+                        <div class="d-flex justify-content-center h-100">
                             <div class="user_card">
                                 <div class="d-flex justify-content-center"><h3 class="card-title">Reset Password</h3></div>
                                 <div class="d-flex justify-content-center form_container">
