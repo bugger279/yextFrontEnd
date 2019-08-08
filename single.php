@@ -34,6 +34,19 @@ if(isset($_GET['id'])) {
     curl_close($ch_reviews);
 ?>
 
+<?php
+    $pid = "5RSdyCCmND";
+    $ecl_call = "https://lists.yext-pub.com/lists?pid=".$pid."&listingId=22&type=PRODUCTS";
+    $ecl_datas = curl_init();
+    curl_setopt($ecl_datas, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ecl_datas, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json'
+    ));
+    curl_setopt($ecl_datas, CURLOPT_URL, $ecl_call);
+    $ecl = curl_exec($ecl_datas);
+    $ecl_json = json_decode($ecl, true);
+    curl_close($ecl_datas);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +75,7 @@ if(isset($_GET['id'])) {
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-            <h1><?php print_r($locations_json["records"][0]["name"]); ?></h1>
+            <h1 id="name"><?php print_r($locations_json["records"][0]["name"]); ?></h1>
         </div>
       </div>
     </div>
@@ -72,7 +85,7 @@ if(isset($_GET['id'])) {
       <div class="row">
         <div class="col-md-3">
           <div class="left-side">
-              <div class="location-categories">
+              <div id="categories" class="location-categories">
                 <h3>Categories</h3>
                 <?php
                     $categories = $locations_json["records"][0]["categories"];
@@ -81,7 +94,7 @@ if(isset($_GET['id'])) {
                     <?php }
                 ?>
               </div>
-              <div class="location-emails">
+              <div id="emails" class="location-emails">
                 <h3>Emails</h3>
                 <?php
                     $emails = $locations_json["records"][0]["emails"];
@@ -158,7 +171,7 @@ if(isset($_GET['id'])) {
                         </span>
                     </div>
                     </span>
-                    <div class="description"><?php print_r($locationDescription); ?></div>
+                    <div id="description" class="description"><?php print_r($locationDescription); ?></div>
                     <div class="row">
                         <div class="goeData col-md-4">
                             <div class="card card-body bg-secondary text-white">
@@ -169,7 +182,7 @@ if(isset($_GET['id'])) {
                         </div>
                         <div class="special-offer col-md-4">
                             <div class="card card-body bg-secondary text-white">
-                                <h3>Special Offer</h3>
+                                <h3 id="specialOffer">Special Offer</h3>
                                 <div class="message">Special Offer: <?php print_r($specialMessage);?></div>
                                 <div class="url"><a target="_blank" class="btn btn-dark" href="<?php print_r($specialUrl);?>">View Offer</a></div>
                             </div>
@@ -177,8 +190,8 @@ if(isset($_GET['id'])) {
                         <div class="social-links col-md-4">
                             <div class="card card-body bg-secondary text-white">
                                 <h3>Social Links</h3>
-                                <div class="twitter"><a href="<?php print_r($twitterHandle);?>">Twitter</a></div>
-                                <div class="facebook"><a href="<?php print_r($facebookHandle);?>">Facebook</a></div>
+                                <div class="twitter"><a id="twitterHandle" target="_blank" href="https://twitter.com/<?php print_r($twitterHandle);?>">Twitter</a></div>
+                                <div class="facebook"><a id="facebookPageUrl" target="_blank" href="<?php print_r($facebookHandle);?>">Facebook</a></div>
                             </div>
                         </div>
                     </div>
@@ -192,64 +205,64 @@ if(isset($_GET['id'])) {
                 <?php
                     $locationAddress = $locations_json["records"][0]["address"];
                 ?>
-                    <div class="addresses">
-                        <div class="addressMain">
-                            <?php print_r($locationAddress["address"]); ?>,
+                    <div id="addresses">
+                        <div id="address">
+                            <span class="address"><?php print_r($locationAddress["address"]); ?></span> ,
                             <?php
                                 if (empty($locationAddress["address2"])) {
-                                    $locationAddress["address2"] = "";
-                                    print_r($locationAddress["address2"]);
-                                } else {
-                                    print_r($locationAddress["address2"]);  
-                                }
+                                    $locationAddress["address2"] = ""; ?>
+
+                                    <span class="address2"><?php print_r($locationAddress["address2"]); ?></span>
+                                <?php } else { ?>
+                                    <span class="address2"><?php  print_r($locationAddress["address2"]); ?></span>
+                                <?php }
                                 
                             ?>,
                             <?php
                                 if (empty($locationAddress["city"])) {
-                                    $locationAddress["city"] = "";
-                                    print_r($locationAddress["city"]);
-                                } else {
-                                    print_r($locationAddress["city"]);  
-                                }
+                                    $locationAddress["city"] = ""; ?>
+                                    <span class="city"><?php print_r($locationAddress["city"]); ?></span>
+                                <?php } else { ?>
+                                    <span class="city"><?php print_r($locationAddress["city"]); ?></span>
+                                <?php }
                                 
                             ?>,
                             <?php
                                 if (empty($locationAddress["displayAddress"])) {
-                                    $locationAddress["displayAddress"] = "";
-                                    print_r($locationAddress["displayAddress"]);
-                                } else {
-                                    print_r($locationAddress["displayAddress"]);  
-                                }
-                                
+                                    $locationAddress["displayAddress"] = ""; ?>
+                                    <span class="displayAddress"><?php print_r($locationAddress["displayAddress"]);?></span>
+                                <?php } else { ?>
+                                    <span class="displayAddress"><?php print_r($locationAddress["displayAddress"]); ?></span>
+                                <?php }
                             ?>,
                             <?php
                                 if (empty($locationAddress["countryCode"])) {
-                                    $locationAddress["countryCode"] = "";
-                                    print_r($locationAddress["countryCode"]);
-                                } else {
-                                    print_r($locationAddress["countryCode"]);
-                                }
+                                    $locationAddress["countryCode"] = ""; ?>
+                                    <?php print_r($locationAddress["countryCode"]); ?>
+                                <?php } else { ?>
+                                    <?php print_r($locationAddress["countryCode"]); ?>
+                                <?php }
                             ?>,
                             <?php
                                 if (empty($locationAddress["postalCode"])) {
-                                    $locationAddress["postalCode"] = "";
-                                    print_r($locationAddress["postalCode"]);
-                                } else {
-                                    print_r($locationAddress["postalCode"]);
-                                }
+                                    $locationAddress["postalCode"] = ""; ?>
+                                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?></span>
+                                <?php } else { ?>
+                                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?></span>
+                                <?php }
                             ?>,
                             <?php
                                 if (empty($locationAddress["state"])) {
-                                    $locationAddress["state"] = "";
-                                    print_r($locationAddress["state"]);
-                                } else {
-                                    print_r($locationAddress["state"]);
-                                }
+                                    $locationAddress["state"] = ""; ?>
+                                    <span class="state"><?php print_r($locationAddress["state"]); ?></span>
+                                <?php } else { ?>
+                                    <span class="state"><?php print_r($locationAddress["state"]); ?></span>
+                                <?php }
                             ?>
                         </div>
                     </div>
             </div>
-            <div class="location-phones">
+            <div class="location-phones" id="phone">
                 <h3>Phones</h3>
                 <?php
                     $phones = $locations_json["records"][0]["phones"];
@@ -258,7 +271,7 @@ if(isset($_GET['id'])) {
                         $phoneCountryCode = $details["number"]["countryCode"];
                     ?>
                         <div class="number">
-                            <div class="phone-number">Phone Number: <?php print_r($phoneCountryCode); ?>-<?php print_r($phoneNumber); ?></div>
+                            <div class="phone-number">Phone Number: <a type="<?php print_r($details["type"]); ?>" href="tel:<?php print_r($phoneCountryCode); ?>-<?php print_r($phoneNumber); ?>"><?php print_r($phoneCountryCode); ?>-<?php print_r($phoneNumber); ?></a></div>
                             <div class="phone-description">Description: <?php print_r($details["description"]); ?></div>
                             <div class="phone-type">Type: <?php print_r($details["type"]); ?></div>
                         </div>
@@ -310,7 +323,7 @@ if(isset($_GET['id'])) {
                     <p><strong>Additional Hours:</strong> <?php print_r($additionalHours["display"]); ?></p>
                 </div>
             </div>
-            <div class="location-images">
+            <div id="image" class="location-images">
                 <h3>Gallery</h3>
                 <div class="gallery-container">
                     <?php
@@ -321,8 +334,8 @@ if(isset($_GET['id'])) {
                         $imageHeight = $image["height"];
                         $imageUrl = $image["url"]; ?>
                         <div class="mySlides">
-                            <img class="img-responsive" src="<?php print_r($imageUrl)?>" style="width:100%">
-                            <span class="img-caption"><?php print_r($imageType)?></span>
+                            <img class="img-responsive" type="<?php print_r($imageType); ?>" src="<?php print_r($imageUrl)?>" style="width:100%">
+                            <span class="img-caption"><?php print_r($imageType); ?></span>
                         </div>
                         <?php
                         }
@@ -331,7 +344,7 @@ if(isset($_GET['id'])) {
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
             </div>
-            <div class="location-videos">
+            <div id="videos" class="location-videos">
                 <h3>Videos</h3>
                 <div class="row">
                     <?php
@@ -399,6 +412,7 @@ if(isset($_GET['id'])) {
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewAssociations">View Accociations</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewLanguages">View Languages</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPayments">Payment Options</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewEcl">View ECL</button>
                 </div>
                 <!-- All Modals -->
                 <!-- Specialities -->
@@ -532,7 +546,7 @@ if(isset($_GET['id'])) {
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Specialities</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Payment Options</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
@@ -544,6 +558,37 @@ if(isset($_GET['id'])) {
                                     <?php }
                                 ?>
                                 </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ECL Modals -->
+                <div class="modal fade" id="viewEcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">ECL</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <?php foreach ($ecl_json as $eclsListings) { ?>
+                                    <div class="ecl-section">
+                                    <h3>List Name: <?php print_r($eclsListings['name']); ?></h3>
+                                <?php foreach ($eclsListings['sections'] as $section) { ?>
+                                        <h4 class="section-name"><?php print_r($section['name']); ?></h4>
+                                        <?php foreach ($section['items'] as $itemData) { ?>
+                                            <div class="itemsInfo">
+                                                <p>Name: <?php print_r($itemData['name']); ?></p>
+                                                <p>Cost type: <?php print_r($itemData['cost']['type']); ?></p>
+                                                <p>Cost price: <?php print_r($itemData['cost']['price']); ?></p>
+                                            </div>
+                                        <?php }
+                                    } ?>
+                                    </div>
+                                <?php } ?>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
