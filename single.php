@@ -134,10 +134,6 @@ if(isset($_GET['id'])) {
                             $logo = $image["url"];
                         }
                     }
-                $closed = $locations_json["records"][0]["closed"];
-                if (empty($closed)) {
-                    $closed = "Not Set";
-                }
                 $locationDescription = $locations_json["records"][0]["description"];
                 $yearEstablished = $locations_json["records"][0]["yearEstablished"];
                 $latitude = $locations_json["records"][0]["geoData"]["displayLatitude"];
@@ -152,7 +148,15 @@ if(isset($_GET['id'])) {
                     <?php if (!empty($logo)) { ?>
                         <span class="main-logo"><img class="img-responsive" src="<?php print_r($logo); ?>" alt="<?php print_r($locationName); ?>"></span>
                     <?php } ?>    
-                    <?php print_r($locationName); ?> <span class="attribution"><img src="<?php print_r($attributionImage); ?>" height="<?php print_r($attributionImageHeight); ?>" width="<?php print_r($attributionImageWidth); ?>" alt="<?php print_r($attributionImageDescription); ?>"></span><span class="closed">Closed: <?php print_r($closed); ?></span></h2>
+                    <?php print_r($locationName); ?> <span class="attribution"><img src="<?php print_r($attributionImage); ?>" height="<?php print_r($attributionImageHeight); ?>" width="<?php print_r($attributionImageWidth); ?>" alt="<?php print_r($attributionImageDescription); ?>"></span>
+                    <?php
+                    $closed = $locations_json["records"][0]["closed"];
+                    $closed = strtolower($closed);
+                    if ($closed === "true") { ?>
+                        <span class="closed">Closed</span>                    
+                    <?php } ?>
+
+                    </h2>
                     <span class="score">
                     <div class="score-wrap">
                         <span class="stars-active" style="width:<?php echo $ratings; ?>%">
@@ -212,51 +216,51 @@ if(isset($_GET['id'])) {
                                 if (empty($locationAddress["address2"])) {
                                     $locationAddress["address2"] = ""; ?>
 
-                                    <span class="address2"><?php print_r($locationAddress["address2"]); ?></span>
+                                    <span class="address2"><?php print_r($locationAddress["address2"]); ?>, </span>
                                 <?php } else { ?>
                                     <span class="address2"><?php  print_r($locationAddress["address2"]); ?></span>
                                 <?php }
                                 
-                            ?>,
+                            ?>
                             <?php
                                 if (empty($locationAddress["city"])) {
                                     $locationAddress["city"] = ""; ?>
-                                    <span class="city"><?php print_r($locationAddress["city"]); ?></span>
+                                    <span class="city"><?php print_r($locationAddress["city"]); ?>, </span>
                                 <?php } else { ?>
-                                    <span class="city"><?php print_r($locationAddress["city"]); ?></span>
+                                    <span class="city"><?php print_r($locationAddress["city"]); ?>, </span>
                                 <?php }
                                 
-                            ?>,
+                            ?>
                             <?php
                                 if (empty($locationAddress["displayAddress"])) {
                                     $locationAddress["displayAddress"] = ""; ?>
-                                    <span class="displayAddress"><?php print_r($locationAddress["displayAddress"]);?></span>
+                                    <span class="displayAddress"><?php print_r($locationAddress["displayAddress"]);?>, </span>
                                 <?php } else { ?>
-                                    <span class="displayAddress"><?php print_r($locationAddress["displayAddress"]); ?></span>
+                                    <span class="displayAddress"><?php print_r($locationAddress["displayAddress"]); ?>, </span>
                                 <?php }
-                            ?>,
+                            ?>
                             <?php
                                 if (empty($locationAddress["countryCode"])) {
                                     $locationAddress["countryCode"] = ""; ?>
-                                    <?php print_r($locationAddress["countryCode"]); ?>
+                                    <?php print_r($locationAddress["countryCode"]); ?>, 
                                 <?php } else { ?>
-                                    <?php print_r($locationAddress["countryCode"]); ?>
+                                    <?php print_r($locationAddress["countryCode"]); ?>, 
                                 <?php }
-                            ?>,
+                            ?>
                             <?php
                                 if (empty($locationAddress["postalCode"])) {
                                     $locationAddress["postalCode"] = ""; ?>
-                                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?></span>
+                                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?>, </span>
                                 <?php } else { ?>
-                                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?></span>
+                                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?>, </span>
                                 <?php }
-                            ?>,
+                            ?>
                             <?php
                                 if (empty($locationAddress["state"])) {
                                     $locationAddress["state"] = ""; ?>
-                                    <span class="state"><?php print_r($locationAddress["state"]); ?></span>
+                                    <span class="state"><?php print_r($locationAddress["state"]); ?>, </span>
                                 <?php } else { ?>
-                                    <span class="state"><?php print_r($locationAddress["state"]); ?></span>
+                                    <span class="state"><?php print_r($locationAddress["state"]); ?>, </span>
                                 <?php }
                             ?>
                         </div>
@@ -675,5 +679,11 @@ if(isset($_GET['id'])) {
     </div>
 </div>
 <script src="js/simpleCarousel.js"></script>
+<script type="text/javascript">
+    function yext_track(target) {
+        var track = new Image();
+        track.src="http://pixel.yext-pub.com/plpixel?source=detailspage&action=click&pid=*5RSdyCCmND*&ids=<?php echo $_GET['id']; ?>" + "&target=" + target;
+    }
+</script>
 </body>
 </html>
