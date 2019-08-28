@@ -295,16 +295,16 @@ if(isset($_GET['id'])) {
                                 <td class="day"><?php print_r($hour["day"]); ?></td>
                                 <?php
                                     foreach ($hour["intervals"] as $day) {
-                                        if (empty($day["starts"])) {
-                                            $day["starts"] = "00:00:00";
+                                        if (empty($day["start"])) {
+                                            $day["start"] = "All day";
                                         }
-                                        if (empty($day["ends"])) {
-                                            $day["ends"] = "00:00:00";
+                                        if (empty($day["end"])) {
+                                            $day["end"] = "All day";
                                         }
                                         ?>
                                             <td>
-                                                <div class="start"><span>Starts:</span> <?php print_r($day["starts"]); ?></div>
-                                                <div class="ends"><span>Ends:</span> <?php print_r($day["ends"]); ?></div>
+                                                <div class="start"><span>Starts:</span> <?php print_r($day["start"]); ?></div>
+                                                <div class="ends"><span>Ends:</span> <?php print_r($day["end"]); ?></div>
                                             </td>
                                     <?php }
                                 ?>
@@ -337,9 +337,7 @@ if(isset($_GET['id'])) {
                             <img class="img-responsive" type="<?php print_r($imageType); ?>" src="<?php print_r($imageUrl)?>" style="width:100%">
                             <span class="img-caption"><?php print_r($imageType); ?></span>
                         </div>
-                        <?php
-                        }
-                        ?>
+                        <?php } ?>
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
