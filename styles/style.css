@@ -27,7 +27,7 @@ a:hover { text-decoration: none; }
 .main-logo { display: inline-block; margin-right: 15px; }
 .main-logo img { max-width: 100px; width: 100%; }
 .single-location-wrapper .location-name { margin-bottom: 10px; line-height: 1.7; position: relative; max-width: 700px; width: 100%; }
-.closed { font-size: 14px; color: grey; display: block; position: absolute; right: 0; top: 37%; }
+.closed { font-size: 14px; color: grey; display: block; position: absolute; right: 0; top: 37%; font-weight: 600; }
 .single-location-wrapper .description { font-size: 24px; color: indigo; margin-bottom: 15px; }
 .cat-and-location h3 { margin: 0 0 10px 0; font-size: 23px; font-weight: 500; }
 .special-offer .url { margin-top: 15px; margin-bottom: 0 ; }
