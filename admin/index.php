@@ -39,18 +39,6 @@ include "include/config.php";
         </div>
     </div>
     <?php
-/*        $readAll = "http://123local.com/powerlistings/product/read.php";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'key: ieurtjkosakwehua1457821244amsnashjad'
-        ));
-        curl_setopt($ch, CURLOPT_URL, $readAll);
-        $locations = curl_exec($ch);
-        $locations_json = json_decode($locations, true);
-        curl_close($ch);*/
-	
-	
 	
 		if(isset($_GET['id']))
 		{
@@ -146,11 +134,7 @@ include "include/config.php";
 		{
 			var status = stat.value;
 			var id = $(stat).next('input').val();
-			//alert(status);
-			
-			
-		
-			
+			//alert(status);			
 			$.ajax({
 				type: "POST",
 				dataType: "text",
@@ -158,15 +142,12 @@ include "include/config.php";
 				data: {"status": status, "id": id},
 				success: function(response)
 				{
-				
 					if(response){
-					alert("Status Changed");
+					    alert("Status Changed");
 					}
-					else{
-						alert("Error");
+					else {
+						alert("There is some problem while changing status!");
 					}
-				
-
 				}
 			});
 			

@@ -3,7 +3,7 @@
 $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "api_db";
+    $dbname = "new_dbs_yext";
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -710,6 +710,15 @@ if(isset($_GET['id'])) {
           </div>
       </div>
   </div>
+  <div class="write-reviews-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                  <p><a href="review.php?id=<?php print_r($locations_json["records"][0]["partnerID"]); ?>" class="btn btn-prim">Write your review</a></p>
+                </div>
+            </div>
+        </div>
+  </div>
 </div>
 <div class="footer bg-dark text-center">
     <div class="container">

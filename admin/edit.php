@@ -78,14 +78,10 @@ if(isset($_GET['id'])) {
       </div>
     </div>
   </div>
-	
-	
-	
-	
+
   <div class="cat-and-location">
     <div class="container">
       <div class="row">
-        
 		  <?php 
 		  $status =  $locations_json["records"][0]["status"];
 		  $address_visibility = $locations_json["records"][0]["address"]["visible"];;
@@ -308,11 +304,11 @@ if(isset($_GET['id'])) {
                             
 				  <div class="form-group">
 					  <label>Starts <?php echo $increment;?></label>
-					  <input type="text" name="start-<?php print_r($hour["day"]); ?>[]" value="<?php echo $day["starts"];?>" class="form-control">
+					  <input type="text" name="start-<?php print_r($hour["day"]); ?>[]" value="<?php echo $day["start"];?>" class="form-control">
 				  </div>
 				  <div class="form-group">
 					  <label>End <?php echo $increment;?></label>
-					  <input type="text" name="end-<?php print_r($hour["day"]); ?>[]" value="<?php echo $day["ends"];?>" class="form-control">
+					  <input type="text" name="end-<?php print_r($hour["day"]); ?>[]" value="<?php echo $day["end"];?>" class="form-control">
 				  </div>
                                     <?php }
                                 ?>
