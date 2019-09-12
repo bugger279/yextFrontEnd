@@ -57,29 +57,80 @@ if(isset($_GET['id'])) {
     <script src="js/jquery.min.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/fontawesome/css/font-awesome.min.css">
+    <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <div class="top-header">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-            <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
-      </div>
+<?php
+    $readAllCategories = "http://123local.com/powerlistings/product/category.php";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'key: ieurtjkosakwehua1457821244amsnashjad'
+    ));
+    curl_setopt($ch, CURLOPT_URL, $readAllCategories);
+    $categories = curl_exec($ch);
+    $categories_json = json_decode($categories, true);
+    curl_close($ch);
+?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
+            </div>
+            <div class="col-md-9">
+                <div class="menu-group">
+                    <ul class="main-menu">
+                        <li><a class="dropdown-toggle" data-toggle="dropdown">Explore</a>
+                            <ul class="dropdown-menu">
+                                <?php foreach ($categories_json as $keys) {
+                                foreach ($keys as $key) { ?>
+                                    <li><a class="dropdown-item" href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><?php print_r($key["categoryName"]); ?></a></li>
+                                <?php }
+                                } ?>
+                            </ul>
+                        </li>
+                        <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li>
+                        <li><a class="add-listing" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add Listings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="main-content">
-  <div class="inner-top-banner">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-            <h1 id="name"><?php print_r($locations_json["records"][0]["name"]); ?></h1>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img class="img-fluid" src="images/slider1.jpg" alt="First slide">
+        <div class="slider-content">
+            <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
+            <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
         </div>
-      </div>
+        </div>
+        <div class="carousel-item">
+        <img class="img-fluid" src="images/slider2.jpg" alt="Second slide">
+        <div class="slider-content">
+            <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
+            <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
+        </div>
+        </div>
     </div>
-  </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
   <div class="cat-and-location">
     <div class="container">
       <div class="row">
@@ -315,15 +366,17 @@ if(isset($_GET['id'])) {
                         </tr>
                     </tbody>
                 </table>
+                <?php
+                if (empty($hours[0]['intervals'][0]['start'])) { ?>
                 <div class="additional-hours">
                     <?php
                         $additionalHours = $locations_json["records"][0]["hoursText"];
-                        if (empty($additionalHours["display"])) {
-                            $additionalHours["display"] = "Not Set";
-                        }
+                        if (!empty($additionalHours["display"])) { ?>
+                            <p><strong>Additional Hours:</strong> <?php print_r($additionalHours["display"]); ?></p>
+                        <?php }
                     ?>
-                    <p><strong>Additional Hours:</strong> <?php print_r($additionalHours["display"]); ?></p>
                 </div>
+                <?php } ?>
             </div>
             <?php
             $images = $locations_json["records"][0]["images"];

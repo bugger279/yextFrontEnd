@@ -83,8 +83,8 @@ if(isset($_GET['id'])) {
     <div class="container">
       <div class="row">
 		  <?php 
-		  $status =  $locations_json["records"][0]["status"];
-		  $address_visibility = $locations_json["records"][0]["address"]["visible"];;
+			$status =  $locations_json["records"][0]["status"];
+			$address_visibility = $locations_json["records"][0]["address"]["visible"];
 		  ?>
         <div class="col-12">
           <div class="right-side">
