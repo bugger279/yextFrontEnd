@@ -116,10 +116,18 @@
                 <div class="row">
                 <?php
                 foreach($locations_json as $keys) {
-                  foreach ($keys as $key => $value) { ?>
+                  foreach ($keys as $key => $value) {
+                    $images = $value['images'];
+                    foreach ($images as $image) {
+                      $logoType = $image["type"];
+                      if ($logoType === "LOGO") {
+                        $logo = $image["url"];
+                      }
+                    }
+                    ?>
                     <div class="location-wrappper col-md-4">
                       <div class="card">
-                        <div class="card-image"><img class="img-fluid" src="images/shop2.jpg" alt="shop"></div>
+                        <div class="card-image"><img class="img-fluid" src="<?php print_r($logo); ?>" alt="shop"></div>
                           <div class="card-body">
                               <h5 class="card-title location-name"><a href="single.php?id=<?php print_r($keys[$key]["partnerID"]); ?>"><?php print_r($keys[$key]["name"]); ?></a></h5>
                               <?php

@@ -131,7 +131,239 @@ if(isset($_GET['id'])) {
         <span class="sr-only">Next</span>
     </a>
 </div>
-  <div class="cat-and-location">
+<?php
+    $locationName = $locations_json["records"][0]["name"];
+    $attributionImage = $locations_json["records"][0]["attribution"]["image"]["url"];
+    $attributionImageHeight = $locations_json["records"][0]["attribution"]["image"]["height"];
+    $attributionImageWidth = $locations_json["records"][0]["attribution"]["image"]["width"];
+    $attributionImageDescription = $locations_json["records"][0]["attribution"]["image"]["description"];
+    $images = $locations_json["records"][0]["images"];
+    foreach ($images as $image) {
+        $logoType = $image["type"];
+        if ($logoType === "LOGO") {
+            $logo = $image["url"];
+        }
+    }
+    $locationDescription = $locations_json["records"][0]["description"];
+    $yearEstablished = $locations_json["records"][0]["yearEstablished"];
+    $latitude = $locations_json["records"][0]["geoData"]["displayLatitude"];
+    $longitude = $locations_json["records"][0]["geoData"]["displayLongitude"];
+    $specialMessage = $locations_json["records"][0]["specialOffer"]["message"];
+    $specialUrl = $locations_json["records"][0]["specialOffer"]["url"];
+    $twitterHandle = $locations_json["records"][0]["twitterHandle"];
+    $facebookHandle = $locations_json["records"][0]["facebookPageUrl"];
+    $total_reviews = $locations_json["records"][0]["total_reviews"];
+    $ratings = ($locations_json["records"][0]["rating"]);
+    // $ratings = ($locations_json["records"][0]["rating"]/5)*100;
+    $specialities = $locations_json["records"][0]["specialities"];
+    $brands = $locations_json["records"][0]["brands"];
+    $products = $locations_json["records"][0]["products"];
+    $associations = $locations_json["records"][0]["associations"];
+    $languages = $locations_json["records"][0]["languages"];
+    $paymentOptions = $locations_json["records"][0]["paymentOptions"];
+    $phones = $locations_json["records"][0]["phones"];
+    $locationAddress = $locations_json["records"][0]["address"];
+    $hours = $locations_json["records"][0]["hours"];
+    $videos = $locations_json["records"][0]["videos"];
+    $urls = $locations_json["records"][0]["urls"];
+    $lists = $locations_json["records"][0]["lists"];
+    $reviews = $reviews_json["records"][0]["reviews"];
+    $reviewLength = sizeof($reviews);
+
+?>
+<div class="single-header">
+    <div class="listing-name">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2><?php print_r($locationName); ?></h2>
+                    <h4><?php print_r($locationDescription); ?></h4>
+                </div>
+                <div class="col-md-4">
+                    <div class="rating-section"><span class="rating_obtainer"><?php print_r($ratings); ?></span>/5</div>
+                    <div class="total-rating">(<?php print_r($total_reviews); ?>) Ratings</div>
+                    <div class="submit-review"><a href="#submitReview"><i class="fa fa-star" aria-hidden="true"></i> Submit Review</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-info">
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="review-section">
+                <h4><span class="reviews_count"><?php print_r($reviews_json["records"][0]["total"]); ?></span> reviews for <?php print_r($locationName); ?></h4>
+                <?php foreach ($reviews as $reviews) { ?>
+                <article class="review-post">
+                    <div class="image-and-review">
+                        <div class="figure">
+                            <div class="review-thumbnail"><img src="<?php print_r($reviews["authorPhotoUrl"]); ?>" alt="<?php print_r($reviews["authorName"]); ?>"></div>
+                            <div class="figcaption"><h4><?php print_r($reviews["authorName"]); ?></h4></div>
+                        </div>
+                        <div class="details">
+                            <div class="top-section">
+                                <h3><?php print_r($reviews["title"]); ?></h3>
+                                <time><?php print_r($reviews["timestamp"]); ?></time>
+                            </div>
+                            <div class="content-section">
+                                <p><?php print_r($reviews["content"]); ?></p>
+                            </div>
+                        </div>
+                        <div class="review-stars">
+                            <div class="rating-section"><span class="rating_obtainer"><?php print_r($reviews["rating"]); ?></span>/5</div>
+                        </div>
+                    </div>
+                </article>
+                <?php } ?>
+            </div>
+<div class="d-none">
+                <!-- <div class="location-hours">
+                <h3>Hours</h3>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col" colspan="3">Intervals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <?php
+                    $hours = $locations_json["records"][0]["hours"];
+                    foreach ($hours as $hour) { ?>
+                            <tr>
+                                <td class="day"><?php print_r($hour["day"]); ?></td>
+                                <?php
+                                    foreach ($hour["intervals"] as $day) {
+                                        if (empty($day["start"])) {
+                                            $day["start"] = "All day";
+                                        }
+                                        if (empty($day["end"])) {
+                                            $day["end"] = "All day";
+                                        }
+                                        ?>
+                                        <td>
+                                            <div class="start"><span>Starts:</span> <?php print_r($day["start"]); ?></div>
+                                            <div class="ends"><span>Ends:</span> <?php print_r($day["end"]); ?></div>
+                                        </td>
+                                    <?php }
+                                ?>
+                    <?php } ?>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+                if (empty($hours[0]['intervals'][0]['start'])) { ?>
+                <div class="additional-hours">
+                    <?php
+                        $additionalHours = $locations_json["records"][0]["hoursText"];
+                        if (!empty($additionalHours["display"])) { ?>
+                            <p><strong>Additional Hours:</strong> <?php print_r($additionalHours["display"]); ?></p>
+                        <?php }
+                    ?>
+                </div>
+                <?php } ?>
+            </div> -->
+</div>
+            <div id="submitReview" class="rate-review-section">
+                <div id="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                        <h5 class="mb-0"><a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-star" aria-hidden="true"></i> Rate us and Write a Review</a></h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="formWrapper">
+                                <form id="form" method="GET">
+                                    <div class="form-group">
+                                        <label for="authorName">Name</label>
+                                        <input name="authorName" type="authorName" class="form-control" id="authorName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title">Review Summary</label>
+                                        <input name="title" type="title" class="form-control" id="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="url">Review Source Url</label>
+                                        <input name="url" type="url" class="form-control" id="url">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content">Review</label>
+                                        <textarea name="content" type="content" class="form-control" id="content"></textarea>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Submit Review</button>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <?php
+                $closed = $locations_json["records"][0]["closed"];
+                $closed = strtolower($closed);
+                if ($closed === "true" || $closed === 1) { ?>
+                    <span class="time-bar closed"><i class="fa fa-clock-o" aria-hidden="true"></i>Closed</span>
+            <?php } else { ?>
+                <span class="time-bar opened"><i class="fa fa-clock-o" aria-hidden="true"></i>Opened</span>
+            <?php } ?>
+            <div class="location-details">
+            <iframe src = "https://maps.google.com/maps?q=<?php print_r($latitude); ?>,<?php print_r($longitude); ?>&hl=es;z=14&amp;output=embed"></iframe>
+            <div class="main-address"><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+            <span>
+            <?php print_r($locationAddress["address"]); ?>
+            <?php
+                if (!empty($locationAddress["address2"])) { ?>
+                    <span class="address2">, <?php  print_r($locationAddress["address2"]); ?>,</span>
+                <?php }
+            ?>
+            <?php
+                if (!empty($locationAddress["city"])) { ?>
+                    <span class="city"><?php print_r($locationAddress["city"]); ?>, </span>
+                <?php }
+            ?>
+            <?php
+                if (!empty($locationAddress["countryCode"])) { ?>
+                    <?php print_r($locationAddress["countryCode"]); ?>, 
+                <?php }
+            ?>
+            <?php
+                if (!empty($locationAddress["postalCode"])) { ?>
+                    <span class="postalCode"><?php print_r($locationAddress["postalCode"]); ?>, </span>
+                <?php }
+            ?>
+            <?php
+                if (!empty($locationAddress["state"])) { ?>
+                    <span class="state"><?php print_r($locationAddress["state"]); ?>, </span>
+                <?php }
+            ?>
+            </span>
+            </div>
+            </div>
+            <div class="social-links">
+                <div class="twitter"><a id="twitterHandle" target="_blank" href="https://twitter.com/<?php print_r($twitterHandle);?>"></a></div>
+                <div class="facebook"><a id="facebookPageUrl" target="_blank" href="<?php print_r($facebookHandle);?>"></a></div>
+            </div>
+            <div class="additional-data">
+                <div class="addtionalData">
+                    <h4 class="side-header">Payment Options</h4>    
+                    <ul>
+                    <?php
+                    foreach ($paymentOptions as $paymentOption) { ?>
+                        <li class="list-group-item"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> &nbsp;<?php print_r($paymentOption); ?></li>
+                    <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+  <div class="cat-and-location d-none">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -172,29 +404,6 @@ if(isset($_GET['id'])) {
           <div class="right-side">
             <div class="locations">
                 <div class="single-location-wrapper">
-                <?php
-                $locationName = $locations_json["records"][0]["name"];
-                $attributionImage = $locations_json["records"][0]["attribution"]["image"]["url"];
-                $attributionImageHeight = $locations_json["records"][0]["attribution"]["image"]["height"];
-                $attributionImageWidth = $locations_json["records"][0]["attribution"]["image"]["width"];
-                $attributionImageDescription = $locations_json["records"][0]["attribution"]["image"]["description"];
-                $images = $locations_json["records"][0]["images"];
-                foreach ($images as $image) {
-                    $logoType = $image["type"];
-                    if ($logoType === "LOGO") {
-                        $logo = $image["url"];
-                    }
-                }
-                $locationDescription = $locations_json["records"][0]["description"];
-                $yearEstablished = $locations_json["records"][0]["yearEstablished"];
-                $latitude = $locations_json["records"][0]["geoData"]["displayLatitude"];
-                $longitude = $locations_json["records"][0]["geoData"]["displayLongitude"];
-                $specialMessage = $locations_json["records"][0]["specialOffer"]["message"];
-                $specialUrl = $locations_json["records"][0]["specialOffer"]["url"];
-                $twitterHandle = $locations_json["records"][0]["twitterHandle"];
-                $facebookHandle = $locations_json["records"][0]["facebookPageUrl"];
-                $ratings = ($locations_json["records"][0]["rating"]/5)*100;
-                ?>
                     <h2 class="location-name">
                     <?php if (!empty($logo)) { ?>
                         <span class="main-logo"><img class="img-responsive" src="<?php print_r($logo); ?>" alt="<?php print_r($locationName); ?>"></span>
@@ -267,7 +476,7 @@ if(isset($_GET['id'])) {
 
                                 <span class="address2"><?php print_r($locationAddress["address2"]); ?></span>
                             <?php } else { ?>
-                                <span class="address2"><?php  print_r($locationAddress["address2"]); ?>,</span>
+                                <span class="address2">, <?php  print_r($locationAddress["address2"]); ?>,</span>
                             <?php }
                         ?>
                         <?php
@@ -277,7 +486,6 @@ if(isset($_GET['id'])) {
                             <?php } else { ?>
                                 <span class="city"><?php print_r($locationAddress["city"]); ?>, </span>
                             <?php }
-                            
                         ?>
                         <?php
                             if (empty($locationAddress["displayAddress"])) {
@@ -700,7 +908,8 @@ if(isset($_GET['id'])) {
       </div>
     </div>
   </div>
-  <div class="reviews-wrapper">
+
+  <div id="review" class="reviews-wrapper d-none">
       <div class="container">
           <div class="row">
               <div class="col-md-12">
@@ -763,7 +972,7 @@ if(isset($_GET['id'])) {
           </div>
       </div>
   </div>
-  <div class="write-reviews-wrapper">
+  <div class="write-reviews-wrapper d-none">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
