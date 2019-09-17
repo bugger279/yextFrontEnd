@@ -175,9 +175,9 @@ time { font-size: 14px; line-height: 22px; }
 .review-section > h4 { margin-bottom: 25px; }
 .rate-review-section a { font-size: 16px; line-height: 24px; color: #333; }
 .top-header .col-md-9 { display: flex; justify-content: flex-end; align-items: center; }
-.results-section { display: flex; justify-content: flex-start; }
-.results-section > div { display: flex; width: 25%; margin: 0 1%; border: 1px solid #dedede; border-radius: 5px; }
-.results-section > div:first-child { margin-left: 0; }
+.results-section { display: flex; justify-content: flex-start; flex-flow: wrap; }
+.results-section > div { display: flex; width: 23%; margin: 1%; border: 1px solid #dedede; border-radius: 5px; }
+/* .results-section > div:first-child { margin-left: 0; } */
 .results-section .card a { background: #73cf42; display: inline-block; font-weight: 600; color: #fff; padding: 8px 16px; border-radius: 5px; border: 1px solid #73cf42; transition: 0.3s all ease-in-out; font-size: 15px; }
 .results-section .card a:hover { color: #73cf42; background: #fff; }
 .results-section .card-title { color: #555; font-weight: 500; margin: 0; }
