@@ -1,3 +1,11 @@
+<?php 
+    if (isset($_POST['submit'])) {
+        $s = $nameData = $_POST['name'];
+        if(empty($s)) {
+            Header('Location: index.php');
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +40,17 @@
         <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
       </div>
       <div class="col-md-9">
+        <form action="search.php" method="post">
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput">Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="listing name" required>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
         <div class="menu-group">
           <ul class="main-menu">
           <li><a class="dropdown-toggle" data-toggle="dropdown">Explore</a>

@@ -1,6 +1,6 @@
 /* Menu */
 .top-header { padding: 20px 0; border-bottom: 1px solid #ceead5; }
-.menu-group { text-align: right; top: 15px; position: relative; }
+.menu-group { text-align: right; position: relative; }
 .menu-group ul { padding: 0; margin: 0; list-style: none; }
 .main-menu > li { display: inline-block; padding: 0 10px; }
 .add-listing i { padding-right: 10px; }
@@ -138,7 +138,7 @@ a:hover { text-decoration: none; }
 .listing-name h4 { color: #7f7f7f; font-size: 16px; }
 .listing-name .col-md-4 { display: flex; justify-content: center; align-items: center; }
 .rating-section { background-color: #73cf42; border-radius: 5px; color: #fff; display: inline-block; font-weight: 700; height: 36px; line-height: 36px; padding: 0 10px; text-align: center; vertical-align: top; width: 60px; font-size: 14px; margin-right: 15px; }
-.submit-review a { font-size: 16px; line-height: 41px; border: 1px solid #363f48; transition: all .2s ease; border-radius: 5px; display: inline-block; font-weight: 600; color: #363f48; padding: 15px 14px; line-height: 1; margin-left: ; }
+.submit-review a { font-size: 16px; line-height: 41px; border: 1px solid #363f48; transition: all .2s ease; border-radius: 5px; display: inline-block; font-weight: 600; color: #363f48; padding: 15px 14px; line-height: 1; }
 .submit-review a:hover { background: #363f48; color: #fff; }
 .submit-review { margin-left: 15px; }
 .addtionalData ul { padding: 0; margin: 0; }
@@ -174,4 +174,11 @@ time { font-size: 14px; line-height: 22px; }
 .image-and-review .review-stars { width: 10%; display: flex; justify-content: end; }
 .review-section > h4 { margin-bottom: 25px; }
 .rate-review-section a { font-size: 16px; line-height: 24px; color: #333; }
-.rate-review-section a i {  }
+.top-header .col-md-9 { display: flex; justify-content: flex-end; align-items: center; }
+.results-section { display: flex; justify-content: flex-start; }
+.results-section > div { display: flex; width: 25%; margin: 0 1%; border: 1px solid #dedede; border-radius: 5px; }
+.results-section > div:first-child { margin-left: 0; }
+.results-section .card a { background: #73cf42; display: inline-block; font-weight: 600; color: #fff; padding: 8px 16px; border-radius: 5px; border: 1px solid #73cf42; transition: 0.3s all ease-in-out; font-size: 15px; }
+.results-section .card a:hover { color: #73cf42; background: #fff; }
+.results-section .card-title { color: #555; font-weight: 500; margin: 0; }
+.results-section .card-text { color: #7f7f7f; font-size: 14px; line-height: 1.4; margin: 10px 0; min-height: 80px; }
