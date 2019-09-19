@@ -26,7 +26,7 @@
 <body>
 <div class="top-header">
 <?php
-    $searchedLocation = "http://123local.com/powerlistings/product/search.php?s=$s";
+    $searchedLocation = "http://123local.com/powerlistings/product/find.php?s=$s";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
