@@ -17,7 +17,7 @@ if(isset($_GET['id'])) {
 ?>
 
 <?php
-    $readAll = "http://123local.com/powerlistings/product/detail.php?id=$id";
+    $readAll = "http://localhost/123local-API/product/detail.php?id=$id";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -31,7 +31,7 @@ if(isset($_GET['id'])) {
 ?>
 
 <?php
-    $reviews_call = "http://123local.com/powerlistings/reviews/reviews.php?id=$id";
+    $reviews_call = "http://localhost/123local-API/reviews/reviews.php?id=$id";
     $ch_reviews = curl_init();
     curl_setopt($ch_reviews, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch_reviews, CURLOPT_HTTPHEADER, array(
@@ -73,7 +73,7 @@ if(isset($_GET['id'])) {
 <body>
 <div class="top-header">
 <?php
-    $readAllCategories = "http://123local.com/powerlistings/product/category.php";
+    $readAllCategories = "http://localhost/123local-API/product/category.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -339,6 +339,51 @@ if(isset($_GET['id'])) {
                 </div>
             <?php } ?>
             <?php
+            if(!empty($images)) { ?>
+            <div id="image" class="location-images">
+                    <h4>Gallery</h4>
+                    <div class="gallery-container">
+                        <?php
+                        // $images = $locations_json["records"][0]["images"];
+                        foreach ($images as $image) {
+                            $imageWidth = $image["width"];
+                            $imageType = $image["type"];
+                            $imageHeight = $image["height"];
+                            $imageUrl = $image["url"]; ?>
+                            <div class="mySlides">
+                                <img class="img-responsive" type="<?php print_r($imageType); ?>" src="<?php print_r($imageUrl)?>" style="width:100%">
+                                <span class="img-caption"><?php print_r($imageType); ?></span>
+                            </div>
+                            <?php } ?>
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php
+            if (!empty($videos)) { ?>
+                <div id="videos" class="location-videos">
+                        <h4>Videos</h4>
+                        <div class="row">
+                            <?php
+                            // $videos = $locations_json["records"][0]["videos"];
+                            foreach ($videos as $video) {
+                                $videoUrl = $video["url"];
+                                $videoDescription = $video["description"]; 
+                                $str = $videoUrl;
+                                $reg = '/v=(\w+)/';
+                                preg_match($reg, $str, $ids);
+                                    foreach ($ids as $id) { }
+                                ?>
+                                <div class="videos col-md-6">
+                                    <div class="video-url"><iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php print_r($id); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                                </div>
+                            <?php }
+                            ?>
+                        </div>
+                    </div>
+            <?php } ?>
+            <?php
             if (!empty($lists)) { ?>
                 <div class="keyword-section section">
                     <article>
@@ -378,7 +423,7 @@ if(isset($_GET['id'])) {
                         );
                         $payLoad = json_encode($reviewArray);
         
-                        $postReview = "http://123local.com/powerlistings/reviews/create.php";
+                        $postReview = "http://localhost/123local-API/reviews/create.php";
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $payLoad);
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

@@ -70,12 +70,14 @@ a:hover { text-decoration: none; }
 .location-hours th { font-weight: 600; }
 .popUpsInheader { margin: 20px 0 0; }
 /* Carousel */
-.gallery-container { position: relative; }
+.gallery-container { position: relative; max-width: 340px; margin: 0 auto; width: 100%; }
 .mySlides { display: none; max-width: 400px; width: 100%; margin: 0 auto; position: relative; }
 .cursor { cursor: pointer; }
 .prev, .next { cursor: pointer; position: absolute; top: 60%; width: auto; padding: 16px; margin-top: -50px; color: white; font-weight: bold; font-size: 20px; border-radius: 0 3px 3px 0; user-select: none; -webkit-user-select: none; }
 .next { right: 0; border-radius: 3px 0 0 3px; }
 .img-caption { display: block; text-align: center; background: rgba(0,0,0,0.5); color: #fff; font-size: 20px; padding: 5px; position: absolute; width: 100%; bottom: 0; }
+#image { margin-bottom: 25px; }
+#videos { margin-bottom: 25px; }
 /* Reviews */
 .jumbotron.review_wrapper { padding: 1rem; border-radius: 21px; }
 .reviewer span { display: inline-block; margin-right: 15px; }
@@ -140,6 +142,7 @@ a:hover { text-decoration: none; }
 .greenBtn:hover { background: #444; border-color: #444; }
 .modelBodySection:last-child { padding: 0 !important; border: 0 !important; }
 .popUpsInheader a { color: #fff; }
+.ecl-btn a { text-align: center; padding: 10px 10px; color: #fff; }
 /* Updated Single Page */
 .header.social-links { border: 0; background: transparent; width: max-content; position: absolute; right: 0; top: 0; }
 .listing-title { padding-right: 75px; }
