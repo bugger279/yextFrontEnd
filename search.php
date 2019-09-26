@@ -56,11 +56,24 @@
                 <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
             </div>
             <div class="col-md-9">
-                <form action="" method="post">
+                <!-- <form action="" method="post">
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="listing name" required>
+                            <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
+                            <div class="result"><ul></ul></div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form> -->
+                <form id="searchForm" action="search.php" method="post">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto fieldInput">
+                            <label class="sr-only" for="inlineFormInput">Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
+                            <div class="result"><ul></ul></div>
                         </div>
                         <div class="col-auto">
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -128,7 +141,7 @@
                                     <a href="single.php?id=<?php print_r($key["partnerID"]); ?>">View Details</a>
                                 </div>
                             </div>
-                        <?php }?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -146,5 +159,39 @@
     </div>
 </div>
 <script src="js/simpleCarousel.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#searchForm input[type="text"]').on("keyup input", function(){
+            /* Get input value on change */
+            var inputVal = $(this).val();
+            var resultDropdown = $(".result ul");
+            if(inputVal.length){
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "search-ajax.php",
+                    data: { "terms": inputVal },
+                    success: function(response) {
+                        if (response) {
+                            if ($(".result ul li").length > 0){
+                                console.log($(".result ul li").length);
+                                $(".result").addClass("populated");
+                            } else {
+                                $(".result").removeClass("populated");
+                            }
+                            resultDropdown.html(response);
+                        }
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    } 
+                });
+            } else{
+                resultDropdown.empty();
+            }
+        });
+    });
+</script>
 </body>
 </html>

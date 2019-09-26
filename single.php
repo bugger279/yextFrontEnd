@@ -17,7 +17,7 @@ if(isset($_GET['id'])) {
 ?>
 
 <?php
-    $readAll = "http://localhost/123local-API/product/detail.php?id=$id";
+    $readAll = "http://123local.com/powerlistings/product/detail.php?id=$id";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -31,7 +31,7 @@ if(isset($_GET['id'])) {
 ?>
 
 <?php
-    $reviews_call = "http://localhost/123local-API/reviews/reviews.php?id=$id";
+    $reviews_call = "http://123local.com/powerlistings/reviews/reviews.php?id=$id";
     $ch_reviews = curl_init();
     curl_setopt($ch_reviews, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch_reviews, CURLOPT_HTTPHEADER, array(
@@ -73,7 +73,7 @@ if(isset($_GET['id'])) {
 <body>
 <div class="top-header">
 <?php
-    $readAllCategories = "http://localhost/123local-API/product/category.php";
+    $readAllCategories = "http://123local.com/powerlistings/product/category.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -90,11 +90,12 @@ if(isset($_GET['id'])) {
                 <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
             </div>
             <div class="col-md-9">
-                <form action="search.php" method="post">
+                <form id="searchForm" action="search.php" method="post">
                     <div class="form-row align-items-center">
-                        <div class="col-auto">
+                        <div class="col-auto fieldInput">
                             <label class="sr-only" for="inlineFormInput">Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="listing name" required>
+                            <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
+                            <div class="result"><ul></ul></div>
                         </div>
                         <div class="col-auto">
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -121,36 +122,36 @@ if(isset($_GET['id'])) {
     </div>
 </div>
 <div class="main-content">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-        <img class="img-fluid" src="images/slider1.jpg" alt="First slide">
-        <div class="slider-content">
-            <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
-            <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img class="img-fluid" src="images/slider1.jpg" alt="First slide">
+            <div class="slider-content">
+                <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
+                <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img class="img-fluid" src="images/slider2.jpg" alt="Second slide">
+            <div class="slider-content">
+                <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
+                <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
+            </div>
+            </div>
         </div>
-        </div>
-        <div class="carousel-item">
-        <img class="img-fluid" src="images/slider2.jpg" alt="Second slide">
-        <div class="slider-content">
-            <h2>Find the Best Local Results for whatever You Need! Near Me is our Job.</h2>
-            <h4>All You Need is 123 Local.  We have done the research and only deliver the best local results for you.  When you need to find anything Near Me, 123 Local is the Best!</h4>
-        </div>
-        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
 <?php
     $locationName = $locations_json["records"][0]["name"];
     $attributionImage = $locations_json["records"][0]["attribution"]["image"]["url"];
@@ -423,7 +424,7 @@ if(isset($_GET['id'])) {
                         );
                         $payLoad = json_encode($reviewArray);
         
-                        $postReview = "http://localhost/123local-API/reviews/create.php";
+                        $postReview = "http://123local.com/powerlistings/reviews/create.php";
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $payLoad);
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -786,5 +787,40 @@ $('a[href="#submitReview"]').click(() => {
 	$('#collapseOne').addClass('show');
 });
 </script>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#searchForm input[type="text"]').on("keyup input", function(){
+            /* Get input value on change */
+            var inputVal = $(this).val();
+            var resultDropdown = $(".result ul");
+            if(inputVal.length){
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "search-ajax.php",
+                    data: { "terms": inputVal },
+                    success: function(response) {
+                        if (response) {
+                            if ($(".result ul li").length > 0){
+                                // console.log($(".result ul li").length);
+                                $(".result").addClass("populated");
+                            } else {
+                                $(".result").removeClass("populated");
+                            }
+                            resultDropdown.html(response);
+                        }
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    } 
+                });
+            } else{
+                resultDropdown.empty();
+            }
+        });
+    });
+    </script>
 </body>
 </html>

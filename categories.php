@@ -54,6 +54,18 @@ if(isset($_GET['category'])) {
           <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
       </div>
       <div class="col-md-9">
+        <form id="searchForm" action="search.php" method="post">
+            <div class="form-row align-items-center">
+                <div class="col-auto fieldInput">
+                    <label class="sr-only" for="inlineFormInput">Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
+                    <div class="result"><ul></ul></div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
           <div class="menu-group">
               <ul class="main-menu">
                   <li><a class="dropdown-toggle" data-toggle="dropdown">Explore</a>
@@ -65,7 +77,7 @@ if(isset($_GET['category'])) {
                           } ?>
                       </ul>
                   </li>
-                  <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li>
+                  <!-- <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li> -->
                   <li><a class="add-listing" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add Listings</a></li>
               </ul>
           </div>
@@ -194,5 +206,39 @@ if(isset($_GET['category'])) {
     </div>
 </div>
 <script src="js/pagination.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#searchForm input[type="text"]').on("keyup input", function(){
+            /* Get input value on change */
+            var inputVal = $(this).val();
+            var resultDropdown = $(".result ul");
+            if(inputVal.length){
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "search-ajax.php",
+                    data: { "terms": inputVal },
+                    success: function(response) {
+                        if (response) {
+                            if ($(".result ul li").length > 0){
+                                console.log($(".result ul li").length);
+                                $(".result").addClass("populated");
+                            } else {
+                                $(".result").removeClass("populated");
+                            }
+                            resultDropdown.html(response);
+                        }
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    } 
+                });
+            } else{
+                resultDropdown.empty();
+            }
+        });
+    });
+</script>
 </body>
 </html>

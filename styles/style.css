@@ -203,3 +203,9 @@ time { font-size: 14px; line-height: 22px; }
 .review-thumbnail img { height: 74px; }
 .figure .figcaption { display: block; width: 100%; text-align: center; }
 .addtionalData a { color: #73cf42; font-weight: 600; }
+
+.fieldInput { position: relative; }
+.result { position: absolute; z-index: 111; background: #fff; width: 100%; top: 40px; left: 0; border: 1px solid #34a853; border-radius: 5px; }
+.result ul { padding: 0; list-style: none; margin: 0; }
+.result ul li a { display: block; padding: 5px 5px 5px 15px; border-bottom: 1px solid #34a853; color: #333; font-size: 17px; }
+.result ul li:last-child a { border: 0; }
