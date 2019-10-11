@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation API with Google Maps API</title>
+    <meta charset="UTF-8" />
+    <script src="js/jquery.min.js"></script>
+  </head>
+  <body>
+      <div id="locationX"></div>
+      <div id="locationY"></div>
+    <script>
+
+      var successCallback = () => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const x = position.coords.latitude;
+                const y = position.coords.longitude;
+                console.log(x, y);
+
+                // Calling API
+                $.getJSON('https://secure.geonames.org/countryCode', {
+                    lat: x,
+                    lng: y,
+                    type: 'JSON',
+                    username: 'test279'
+                    }, function (result) {
+                        console.log(result);
+                        console.log(x, y);
+                    });
+                });
+        } else {
+            console.log('There is some error!');
+        }
+      };
+
+      successCallback();
+
+    </script>
+  </body>
+</html>

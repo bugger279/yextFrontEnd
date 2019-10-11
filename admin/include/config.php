@@ -1,6 +1,10 @@
 <?php 
+    // $servername = "localhost";
+    // $username = "local_123localyext";
+    // $password = "DR-bx(HBSFk[";
+    // $dbname = "local_123localyext";
 
-$servername = "localhost";
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "new_dbs_yext";

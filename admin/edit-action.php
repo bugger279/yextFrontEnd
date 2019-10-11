@@ -461,7 +461,7 @@ if(isset($_POST['yext-id']))
     }
 
 	
-echo	$json_array = '{
+	$json_array = '{
     "yextID": "'. $_POST['yext-id'] .'",
     "status": "'.$_POST['status'].'",
     "name": "'.$_POST['name'].'",

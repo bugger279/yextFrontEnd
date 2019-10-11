@@ -10,7 +10,7 @@ if(isset($_GET['id'])) {
 ?>
 
 <?php
-    $readAll = "http://123local.com/powerlistings/product/detail.php?id=$id";
+    $readAll = "http://127.0.0.1/123local-API/product/detail.php?id=$id";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -23,7 +23,7 @@ if(isset($_GET['id'])) {
 ?>
 
 <?php
-    $reviews_call = "http://123local.com/powerlistings/reviews/reviews.php?id=$id";
+    $reviews_call = "http://127.0.0.1/123local-API/reviews/reviews.php?id=$id";
     $ch_reviews = curl_init();
     curl_setopt($ch_reviews, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch_reviews, CURLOPT_HTTPHEADER, array(
@@ -67,12 +67,15 @@ if(isset($_GET['id'])) {
 							data: $('#form').serialize(),
 							success: function(response)
 							{
-								console.log(response);
-								if(response){
-									alert("Status Changed");
+								json = JSON.parse(response)
+								final_response = json["description"]["message"];
+								
+								if(final_response === "Location was updated."){
+									//console.log(response);
+									alert("Listing Updated");
 								}
 								else {
-									alert("There is some problem while changing status!");
+									alert("There is some problem while updating!");
 								}
 							}
 						});

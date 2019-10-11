@@ -90,39 +90,36 @@ if(isset($_GET['id'])) {
                 <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
             </div>
             <div class="col-md-9">
-                <form id="searchForm" action="search.php" method="post">
-                    <div class="form-row align-items-center">
-                        <div class="col-auto fieldInput">
+                <div class="menu-group">
+                    <ul class="main-menu">
+                    <li><a id="explore-header" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-compass" aria-hidden="true"></i> Explore</a>
+                      <ul class="dropdown-menu">
+                        <?php foreach ($categories_json as $keys) {
+                          foreach ($keys as $key) { ?>
+                            <li><a class="dropdown-item" href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><i class="fa fa-list-alt" aria-hidden="true"></i><?php print_r($key["categoryName"]); ?></a></li>
+                          <?php } } ?>
+                      </ul>
+                    </li>
+                    <!-- <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li> -->
+                    <li><a class="add-listing" href="add.php"><i class="fa fa-list-alt" aria-hidden="true"></i> Add Listings</a></li>
+                    </ul>
+                  </div>
+                  <form id="searchForm" action="search.php" method="post">
+                      <div class="form-row align-items-center">
+                          <div class="col-auto fieldInput">
                             <label class="sr-only" for="inlineFormInput">Name</label>
                             <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
                             <div class="result"><ul></ul></div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-                <div class="menu-group">
-                    <ul class="main-menu">
-                        <li><a class="dropdown-toggle" data-toggle="dropdown">Explore</a>
-                            <ul class="dropdown-menu">
-                                <?php foreach ($categories_json as $keys) {
-                                foreach ($keys as $key) { ?>
-                                    <li><a class="dropdown-item" href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><?php print_r($key["categoryName"]); ?></a></li>
-                                <?php }
-                                } ?>
-                            </ul>
-                        </li>
-                        <!-- <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li> -->
-                        <li><a class="add-listing" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add Listings</a></li>
-                    </ul>
-                </div>
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                      </div>
+                  </form>
             </div>
         </div>
     </div>
 </div>
 <div class="main-content">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -151,7 +148,7 @@ if(isset($_GET['id'])) {
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div> -->
 <?php
     $locationName = $locations_json["records"][0]["name"];
     $attributionImage = $locations_json["records"][0]["attribution"]["image"]["url"];
@@ -208,7 +205,7 @@ if(isset($_GET['id'])) {
                             <div class="facebook"><a id="facebookPageUrl" target="_blank" href="<?php print_r($facebookHandle);?>"></a></div>
                         </div> -->
                     </h2>
-                    <h4><?php print_r($locationDescription); ?></h4>
+                    <h4><?php print_r(substr($locationDescription, 0, 140)); echo "..."; ?></h4>
                     <div class="popUpsInheader">
                         <?php if (!empty($emails)) { ?>
                         <a class="greenBtn" href="" data-toggle="modal" data-target="#emailPopUp">Email Us</a>
@@ -339,9 +336,9 @@ if(isset($_GET['id'])) {
                     </article>
                 </div>
             <?php } ?>
-            <?php
-            if(!empty($images)) { ?>
-            <div id="image" class="location-images">
+            <div class="imagesAndVideosSection">
+                <?php if(!empty($images)) { ?>
+                <div id="image" class="location-images">
                     <h4>Gallery</h4>
                     <div class="gallery-container">
                         <?php
@@ -364,26 +361,25 @@ if(isset($_GET['id'])) {
             <?php
             if (!empty($videos)) { ?>
                 <div id="videos" class="location-videos">
-                        <h4>Videos</h4>
-                        <div class="row">
-                            <?php
-                            // $videos = $locations_json["records"][0]["videos"];
-                            foreach ($videos as $video) {
-                                $videoUrl = $video["url"];
-                                $videoDescription = $video["description"]; 
-                                $str = $videoUrl;
-                                $reg = '/v=(\w+)/';
-                                preg_match($reg, $str, $ids);
-                                    foreach ($ids as $id) { }
-                                ?>
-                                <div class="videos col-md-6">
-                                    <div class="video-url"><iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php print_r($id); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-                                </div>
-                            <?php }
+                    <h4>Videos</h4>
+                        <?php
+                        // $videos = $locations_json["records"][0]["videos"];
+                        foreach ($videos as $video) {
+                            $videoUrl = $video["url"];
+                            $videoDescription = $video["description"]; 
+                            $str = $videoUrl;
+                            $reg = '/v=(\w+)/';
+                            preg_match($reg, $str, $ids);
+                                foreach ($ids as $id) { }
                             ?>
-                        </div>
-                    </div>
+                            <div class="videos">
+                                <div class="video-url"><iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php print_r($id); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                            </div>
+                        <?php }
+                        ?>
+                </div>
             <?php } ?>
+            </div>
             <?php
             if (!empty($lists)) { ?>
                 <div class="keyword-section section">

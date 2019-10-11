@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     $(".phone-number:last").after("<div class='row phone-number' id='phone-number-" + nextindex + "'></div>");
     // Adding element to <div>
-    $("#phone-number-" + nextindex).append("<div class='col-3'><div class='form-group'><label>Number</label><input type='tel' name='number[]' class='form-control' data-validation='phone' data-content='Number cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Country Code</label><input type='tel' name='phone-country-code[]' class='form-control' validation='noempty' data-content='Country Code cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Description</label><input type='text' name='phone-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'></div></div><div class='col-2'><div class='form-group'><label>Type</label><input type='text' name='type[]' class='form-control' data-validation='noempty' data-content='Type cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_phone_number_" + nextindex + "' class='remove-phone-number'>X</span></div></div>");
+    $("#phone-number-" + nextindex).append("<div class='col-3'><div class='form-group'><label>Number</label><input type='tel' name='number[]' class='form-control' data-validation='phone' data-content='Number cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Country Code</label><input type='tel' name='phone-country-code[]' class='form-control' validation='noempty' data-content='Country Code cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Description</label><input type='text' name='phone-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'></div></div><div class='col-2'><div class='form-group'><label>Type</label><input type='text' name='type[]' class='form-control' data-validation='noempty' data-content='Type cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_phone_number_" + nextindex + "' class='remove-phone-number x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
 
     // Adding element to <div>
-    $("#email-" + nextindex).append("<div class='col-5'><div class='form-group'><label>Email ID</label><input type='email' name='email-address[]' class='form-control' data-validation='email' data-content='Email cannot be empty'> </div></div><div class='col-5'><div class='form-group'><label>Description</label><input type='text' name='email-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_email_" + nextindex + "' class='remove-email'>X</span></div></div>");
+    $("#email-" + nextindex).append("<div class='col-5'><div class='form-group'><label>Email ID</label><input type='email' name='email-address[]' class='form-control' data-validation='email' data-content='Email cannot be empty'> </div></div><div class='col-5'><div class='form-group'><label>Description</label><input type='text' name='email-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_email_" + nextindex + "' class='remove-email x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -91,7 +91,7 @@ $(document).ready(function () {
 
 
     // Adding element to <div>
-    $("#categories-" + nextindex).append("<div class='col-5'><div class='form-group'><label>Name</label><input type='text' name='category-name[]' class='form-control'></div></div><div class='col-5'><div class='form-group'><label>ID</label><input type='text' name='category-id[]' class='form-control'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_categories_" + nextindex + "' class='remove-categories'>X</span></div></div>");
+    $("#categories-" + nextindex).append("<div class='col-5'><div class='form-group'><label>Name</label><input type='text' name='category-name[]' class='form-control'></div></div><div class='col-5'><div class='form-group'><label>ID</label><input type='text' name='category-id[]' class='form-control'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_categories_" + nextindex + "' class='remove-categories x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -131,7 +131,7 @@ $(document).ready(function () {
 
 
   // Adding element to <div>
-  $("#MONDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-MONDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-MONDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_MONDAY_" + nextindex + "' class='remove-MONDAY'>X</span></div></div>");
+  $("#MONDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-MONDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-MONDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_MONDAY_" + nextindex + "' class='remove-MONDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -168,7 +168,7 @@ $(".add-TUESDAY").click(function () {
 
 
   // Adding element to <div>
-  $("#TUESDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-TUESDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-TUESDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_TUESDAY_" + nextindex + "' class='remove-TUESDAY'>X</span></div></div>");
+  $("#TUESDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-TUESDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-TUESDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_TUESDAY_" + nextindex + "' class='remove-TUESDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -205,7 +205,7 @@ $(".add-WEDNESDAY").click(function () {
 
 
   // Adding element to <div>
-  $("#WEDNESDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-WEDNESDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-WEDNESDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_WEDNESDAY_" + nextindex + "' class='remove-WEDNESDAY'>X</span></div></div>");
+  $("#WEDNESDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-WEDNESDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-WEDNESDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_WEDNESDAY_" + nextindex + "' class='remove-WEDNESDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -242,7 +242,7 @@ $(".add-THURSDAY").click(function () {
 
 
   // Adding element to <div>
-  $("#THURSDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-THURSDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-THURSDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_THURSDAY_" + nextindex + "' class='remove-THURSDAY'>X</span></div></div>");
+  $("#THURSDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-THURSDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-THURSDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_THURSDAY_" + nextindex + "' class='remove-THURSDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -278,7 +278,7 @@ $(".add-FRIDAY").click(function () {
 
 
   // Adding element to <div>
-  $("#FRIDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-FRIDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-FRIDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_FRIDAY_" + nextindex + "' class='remove-FRIDAY'>X</span></div></div>");
+  $("#FRIDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-FRIDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-FRIDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_FRIDAY_" + nextindex + "' class='remove-FRIDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -314,7 +314,7 @@ $(".add-SATURDAY").click(function () {
 
 
   // Adding element to <div>
-  $("#SATURDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-SATURDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-SATURDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_SATURDAY_" + nextindex + "' class='remove-SATURDAY'>X</span></div></div>");
+  $("#SATURDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-SATURDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-SATURDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_SATURDAY_" + nextindex + "' class='remove-SATURDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -351,7 +351,7 @@ $(".add-SUNDAY").click(function () {
 
 
   // Adding element to <div>
-  $("#SUNDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-SUNDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-SUNDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_SUNDAY_" + nextindex + "' class='remove-SUNDAY'>X</span></div></div>");
+  $("#SUNDAY-" + nextindex).append(" <div class='col-5'><div class='form-group'><label>Starts</label><input type='text' name='start-SUNDAY[]' class='form-control' data-validation='noempty' data-content='Start Time cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>End</label><input type='text' name='end-SUNDAY[]' class='form-control' data-validation='noempty' data-content='End Time cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_SUNDAY_" + nextindex + "' class='remove-SUNDAY x-mark'>X</span></div></div>");
 });
 
 // Remove element
@@ -390,7 +390,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#images-" + nextindex).append("<div class='col-3'><div class='form-group'><label>Image Width</label><input type='text' name='image-width[]' class='form-control' data-validation='numericonly' data-content='Image Width cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Image Height</label><input type='text' name='image-height[]' class='form-control' data-validation='numericonly' data-content='Image Height cannot be empty'> </div> </div> <div class='col-2'> <div class='form-group'><label>Image Type</label><select class='form-control' name='image-type[]'><option value='LOGO' >LOGO</option><option value='STOREFRONT' >STOREFRONT</option><option value='GALLERY' >GALLERY</option><option value='HEADSHOT' >HEADSHOT</option></select></div></div><div class='col-3'><div class='form-group'><label>Image URL</label><input type='url' name='image-url[]' class='form-control' data-validation='url' data-content='Image URL cannot be empty'>  </div>  </div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_images_" + nextindex + "' class='remove-images'>X</span></div></div>");
+    $("#images-" + nextindex).append("<div class='col-3'><div class='form-group'><label>Image Width</label><input type='text' name='image-width[]' class='form-control' data-validation='numericonly' data-content='Image Width cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Image Height</label><input type='text' name='image-height[]' class='form-control' data-validation='numericonly' data-content='Image Height cannot be empty'> </div> </div> <div class='col-2'> <div class='form-group'><label>Image Type</label><select class='form-control' name='image-type[]'><option value='LOGO' >LOGO</option><option value='STOREFRONT' >STOREFRONT</option><option value='GALLERY' >GALLERY</option><option value='HEADSHOT' >HEADSHOT</option></select></div></div><div class='col-3'><div class='form-group'><label>Image URL</label><input type='url' name='image-url[]' class='form-control' data-validation='url' data-content='Image URL cannot be empty'>  </div>  </div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_images_" + nextindex + "' class='remove-images x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -428,7 +428,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#videos-" + nextindex).append("<div class='col-5'><div class='form-group'><label>Video URL</label><input type='url' name='video-url[]' class='form-control' data-validation='url' data-content='Video URL cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>Video Description</label><input type='text' name='video-description[]' class='form-control' data-validation='noempty' data-content='Video Description cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_videos_" + nextindex + "' class='remove-videos'>X</span></div></div>");
+    $("#videos-" + nextindex).append("<div class='col-5'><div class='form-group'><label>Video URL</label><input type='url' name='video-url[]' class='form-control' data-validation='url' data-content='Video URL cannot be empty'></div></div><div class='col-5'><div class='form-group'><label>Video Description</label><input type='text' name='video-description[]' class='form-control' data-validation='noempty' data-content='Video Description cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_videos_" + nextindex + "' class='remove-videos x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -466,7 +466,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#payments-" + nextindex).append("<div class='col-11'><div class='form-group'> <label>Payment Option</label> <input type='url' name='payment-option[]' class='form-control' data-validation='noempty' data-content='Payment Option cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_payments_" + nextindex + "' class='remove-payments'>X</span></div></div>");
+    $("#payments-" + nextindex).append("<div class='col-11'><div class='form-group'> <label>Payment Option</label> <input type='url' name='payment-option[]' class='form-control' data-validation='noempty' data-content='Payment Option cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_payments_" + nextindex + "' class='remove-payments x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -504,7 +504,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#urls-" + nextindex).append("<div class='col-3'> <div class='form-group'>   <label>Display URLs</label>   <input type='url' name='url-display[]' class='form-control' data-validation='url' data-content='Display URL cannot be empty'> </div>   </div>   <div class='col-3'> <div class='form-group'>   <label>Description</label>   <input type='text' name='url-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'> </div>   </div>   <div class='col-2'> <div class='form-group'>   <label>Type</label>   <input type='text' name='url-type[]' class='form-control' data-validation='noempty' data-content='Type cannot be empty'> </div>   </div>   <div class='col-3'> <div class='form-group'>   <label>URL</label>   <input type='url' name='url-url[]' class='form-control' data-validation='url' data-content='URL cannot be empty'> </div>   </div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_urls_" + nextindex + "' class='remove-urls'>X</span></div></div>");
+    $("#urls-" + nextindex).append("<div class='col-3'> <div class='form-group'>   <label>Display URLs</label>   <input type='url' name='url-display[]' class='form-control' data-validation='url' data-content='Display URL cannot be empty'> </div>   </div>   <div class='col-3'> <div class='form-group'>   <label>Description</label>   <input type='text' name='url-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'> </div>   </div>   <div class='col-2'> <div class='form-group'>   <label>Type</label>   <input type='text' name='url-type[]' class='form-control' data-validation='noempty' data-content='Type cannot be empty'> </div>   </div>   <div class='col-3'> <div class='form-group'>   <label>URL</label>   <input type='url' name='url-url[]' class='form-control' data-validation='url' data-content='URL cannot be empty'> </div>   </div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_urls_" + nextindex + "' class='remove-urls x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -542,7 +542,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#keywords-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Keyword</label><input type='text' name='keyword[]' class='form-control' data-validation='noempty' data-content='Keyword cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_keywords_" + nextindex + "' class='remove-keywords'>X</span></div></div>");
+    $("#keywords-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Keyword</label><input type='text' name='keyword[]' class='form-control' data-validation='noempty' data-content='Keyword cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_keywords_" + nextindex + "' class='remove-keywords x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -581,7 +581,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#lists-" + nextindex).append("<div class='col-3'><div class='form-group'><label>Name</label><input type='text' name='list-name[]' class='form-control' data-validation='noempty' data-content='Twitter cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Description</label><input type='text' name='list-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Type</label><select class='form-control' name='list-type[]'> <option value='MENU'>MENU</option> <option value='PRODUCTS'>PRODUCTS</option> <option value='BIOS'>BIOS</option> <option value='EVENTS'>EVENTS</option></select></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_lists_" + nextindex + "' class='remove-lists'>X</span></div></div>");
+    $("#lists-" + nextindex).append("<div class='col-3'><div class='form-group'><label>Name</label><input type='text' name='list-name[]' class='form-control' data-validation='noempty' data-content='Twitter cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Description</label><input type='text' name='list-description[]' class='form-control' data-validation='noempty' data-content='Description cannot be empty'></div></div><div class='col-3'><div class='form-group'><label>Type</label><select class='form-control' name='list-type[]'> <option value='MENU'>MENU</option> <option value='PRODUCTS'>PRODUCTS</option> <option value='BIOS'>BIOS</option> <option value='EVENTS'>EVENTS</option></select></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_lists_" + nextindex + "' class='remove-lists x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -618,7 +618,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#specialities-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Speciality</label><input type='text' name='speciality[]' class='form-control' data-validation='noempty' data-content='Speciality cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_specialities_" + nextindex + "' class='remove-specialities'>X</span></div></div>");
+    $("#specialities-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Speciality</label><input type='text' name='speciality[]' class='form-control' data-validation='noempty' data-content='Speciality cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_specialities_" + nextindex + "' class='remove-specialities x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -656,7 +656,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#brands-" + nextindex).append(" <div class='col-11'><div class='form-group'><label>Brand</label><input type='text' name='brand[]' class='form-control' data-validation='noempty' data-content='Brand cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_brands_" + nextindex + "' class='remove-brands'>X</span></div></div>");
+    $("#brands-" + nextindex).append(" <div class='col-11'><div class='form-group'><label>Brand</label><input type='text' name='brand[]' class='form-control' data-validation='noempty' data-content='Brand cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_brands_" + nextindex + "' class='remove-brands x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -694,7 +694,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#products-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Product</label><input type='text' name='product[]' class='form-control' data-validation='noempty' data-content='Products cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_products_" + nextindex + "' class='remove-products'>X</span></div></div>");
+    $("#products-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Product</label><input type='text' name='product[]' class='form-control' data-validation='noempty' data-content='Products cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_products_" + nextindex + "' class='remove-products x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -731,7 +731,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#services-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Service</label><input type='text' name='service[]' class='form-control' data-validation='noempty' data-content='Service cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_services_" + nextindex + "' class='remove-services'>X</span></div></div>");
+    $("#services-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Service</label><input type='text' name='service[]' class='form-control' data-validation='noempty' data-content='Service cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_services_" + nextindex + "' class='remove-services x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -769,7 +769,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#associations-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Association</label><input type='text' name='association[]' class='form-control' data-validation='noempty' data-content='Association cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_association_" + nextindex + "' class='remove-associations'>X</span></div></div>");
+    $("#associations-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Association</label><input type='text' name='association[]' class='form-control' data-validation='noempty' data-content='Association cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_association_" + nextindex + "' class='remove-associations x-mark'>X</span></div></div>");
   });
 
   // Remove element
@@ -806,7 +806,7 @@ $('.container').on('click', '.remove-SUNDAY', function () {
 
 
     // Adding element to <div>
-    $("#languages-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Speciality</label><input type='text' name='language[]' class='form-control' data-validation='noempty' data-content='Speciality cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_association_" + nextindex + "' class='remove-languages'>X</span></div></div>");
+    $("#languages-" + nextindex).append("<div class='col-11'><div class='form-group'><label>Language</label><input type='text' name='language[]' class='form-control' data-validation='noempty' data-content='Speciality cannot be empty'></div></div><div class='col-1 padding-top-30'><div class='form-group'><span id='remove_association_" + nextindex + "' class='remove-languages x-mark'>X</span></div></div>");
   });
 
   // Remove element

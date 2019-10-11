@@ -56,45 +56,31 @@
                 <div class="logo"><a href="index.php"><img class="img-responsive" src="images/123localLogo.png" alt="123local logo"></a></div>
             </div>
             <div class="col-md-9">
-                <!-- <form action="" method="post">
-                    <div class="form-row align-items-center">
-                        <div class="col-auto">
-                            <label class="sr-only" for="inlineFormInput">Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
-                            <div class="result"><ul></ul></div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form> -->
-                <form id="searchForm" action="search.php" method="post">
-                    <div class="form-row align-items-center">
-                        <div class="col-auto fieldInput">
-                            <label class="sr-only" for="inlineFormInput">Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
-                            <div class="result"><ul></ul></div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
                 <div class="menu-group">
                     <ul class="main-menu">
-                        <li><a class="dropdown-toggle" data-toggle="dropdown">Explore</a>
-                            <ul class="dropdown-menu">
-                                <?php foreach ($categories_json as $keys) {
-                                foreach ($keys as $key) { ?>
-                                    <li><a class="dropdown-item" href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><?php print_r($key["categoryName"]); ?></a></li>
-                                <?php }
-                                } ?>
-                            </ul>
-                        </li>
-                        <!-- <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li> -->
-                        <li><a class="add-listing" href="#"><i class="fa fa-plus" aria-hidden="true"></i>Add Listings</a></li>
+                    <li><a id="explore-header" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-compass" aria-hidden="true"></i> Explore</a>
+                      <ul class="dropdown-menu">
+                        <?php foreach ($categories_json as $keys) {
+                          foreach ($keys as $key) { ?>
+                            <li><a class="dropdown-item" href="categories.php?category=<?php print_r($key["categoriesNameAlias"]); ?>"><i class="fa fa-list-alt" aria-hidden="true"></i><?php print_r($key["categoryName"]); ?></a></li>
+                          <?php }
+                        } ?>
+                      </ul>
+                    </li>
+                    <!-- <li><a class="add-listing" href="#"><i class="fa fa-user" aria-hidden="true"></i>Join Now</a></li> -->
+                    <li><a class="add-listing" href="add.php"><i class="fa fa-list-alt" aria-hidden="true"></i> Add Listings</a></li>
                     </ul>
-                </div>
+                  </div>
+                  <form id="searchForm" action="search.php" method="post">
+                      <div class="form-row align-items-center">
+                          <div class="col-auto fieldInput">
+                            <label class="sr-only" for="inlineFormInput">Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="listing name" required  autocomplete="off">
+                            <div class="result"><ul></ul></div>
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                      </div>
+                  </form>
             </div>
         </div>
     </div>
