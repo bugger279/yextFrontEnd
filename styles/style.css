@@ -22,6 +22,24 @@ ul.dropdown-menu li a { padding: 8px 20px; }
 .imagesAndVideosSection { display: flex; }
 .imagesAndVideosSection > div { width: 100%; }
 
+/* .filter-wrapper { position: relative; }
+.search-filter { padding: 9px 20px 9px 15px; background: #34a853; border-radius: 11px; color: #fff !important; cursor: pointer; display: inline-block; }
+.search-filter i { padding-right: 10px; }
+#demo { position: absolute; transition: 0.3s all ease-in-out; background: #fff; width: 550px; left: -60%; text-align: left; max-width: 550px; border-radius: 21px; border: 1px solid #000; padding: 15px; z-index: 9; top: 70px; } */
+
+#filter-box form .form-group { display: flex; width: 19%; margin-bottom: 0; flex-direction: column; }
+#filter-box form { display: flex; }
+.form-button { display: flex; justify-content: space-around; margin-top: 15px; }
+#filter-box form .form-group label { padding-right: 15px; line-height: 2;; }
+#filter-box form { display: flex; padding: 15px; margin: 20px 0; border: 1px solid #ccc; border-radius: 21px; flex-direction: column; }
+#filter-box .form-box { display: flex; justify-content: space-around; }
+#filter-box form .form-group .field-hidden input { height: 35px; padding: 15px; border-radius: 21px; border: 1px solid #ccc; color: #000; width: 100%; }
+.filteredContent ul { padding: 15px; margin: 20px 0 30px; border-radius: 21px; border: 1px solid #ccc; list-style: none; }
+.filteredContent ul li.success { display: inline-block; width: 23%; margin: 5px 0; margin-right: 1%; padding: 10px 0; border-radius: 11px; background: #34a853; text-align: center; line-height: 1; border: 1px solid #34a853; transition: 0.3s all ease-in-out; }
+.filteredContent ul li.success:hover { background: #fff; }
+.filteredContent ul li.success:hover a { color: #34a853; }
+.filteredContent ul li.success a { color: #fff; }
+
 /* Slider */
 .slider-content { text-align: center; margin: 0 auto; width: 100%; position: absolute; top: 25%; max-width: 1000px; left: 0; right: 0; background: rgba(0,0,0,0); z-index: 1; color: #f7f7f7; }
 .carousel-item::before { position: absolute; content: ''; background: rgba(0,0,0,0.4); height: 100%; width: 100%; top: 0; left: 0; }
@@ -153,6 +171,8 @@ a:hover { text-decoration: none; }
 .modelBodySection:last-child { padding: 0 !important; border: 0 !important; }
 .popUpsInheader a { color: #fff; }
 .ecl-btn a { text-align: center; padding: 10px 10px; color: #fff; }
+
+
 
 /* Updated Single Page */
 .header.social-links { border: 0; background: transparent; width: max-content; position: absolute; right: 0; top: 0; }

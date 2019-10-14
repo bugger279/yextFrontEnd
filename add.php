@@ -517,6 +517,39 @@ $hinc = $hinc +1;
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+    $(document).ready(function(){
+        $('#searchForm input[type="text"]').on("keyup input", function(){
+            /* Get input value on change */
+            var inputVal = $(this).val();
+            var resultDropdown = $(".result ul");
+            if(inputVal.length){
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "search-ajax.php",
+                    data: { "terms": inputVal },
+                    success: function(response) {
+                        if (response) {
+                            if ($(".result ul li").length > 0){
+                                console.log($(".result ul li").length);
+                                $(".result").addClass("populated");
+                            } else {
+                                $(".result").removeClass("populated");
+                            }
+                            resultDropdown.html(response);
+                        }
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    } 
+                });
+            } else{
+                resultDropdown.empty();
+            }
+        });
+    });
+</script>
 </body>
 
 </html>
